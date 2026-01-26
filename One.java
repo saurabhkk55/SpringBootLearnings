@@ -158,7 +158,7 @@ public class One {
 
         List<String> fruits = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
 
-        System.out.println("Create a Map of Word Frequencies");
+        System.out.println("21. Create a Map of Word Frequencies");
         fruits.stream()
                 .collect(Collectors.groupingBy(word -> word, Collectors.counting()))
                 .forEach((x, y) -> {
@@ -167,13 +167,13 @@ public class One {
 
         String str1 = "hello how are you doing";
 
-        System.out.println("Count frequency of character in a string and also maintain the insertion order");
+        System.out.println("22. Count frequency of character in a string and also maintain the insertion order");
         str1.chars()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()))
                 .forEach((x, y) -> System.out.println(x + " => " + y));
 
-        System.out.println("Given a list of strings, find all the string that contains all unique characters. ");
+        System.out.println("23. Given a list of strings, find all the string that contains all unique characters. ");
         List<String> input1 = List.of("abc", "aabb", "defg", "xyzx", "mnop");
 
         List<String> list1 = input1.stream()
