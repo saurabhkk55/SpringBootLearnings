@@ -19,12 +19,12 @@ interface Channel {
 
 class ChannelImpl implements Channel {
     String name;
-    List<Subscriber> subscriberList;
+    Set<Subscriber> subscriberList;
     Set<String> contents;
 
     public ChannelImpl(String name) {
         this.name = name;
-        this.subscriberList = new ArrayList<>();
+        this.subscriberList = new HashSet<>();
         this.contents = new HashSet<>();
     }
 
