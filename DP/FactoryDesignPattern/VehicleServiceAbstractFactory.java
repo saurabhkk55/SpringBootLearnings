@@ -70,7 +70,7 @@ class ElectricVehicleFactory implements VehicleFactory {
     }
 }
 
-public class VehicleService {
+public class VehicleServiceAbstractFactory {
     static void main() {
         VehicleFactory vehicleFactory = new PetrolVehicleFactory();
         Vehicle vehicle = vehicleFactory.createVehicle(VehicleType.CAR);
