@@ -223,105 +223,217 @@ public class OrderController {
 
 # 3️⃣ Global Exception Handling (BEST PRACTICE 🔥)
 
-## 🎯 Use-case
+## 1️⃣ Problem kya hoti hai bina GlobalExceptionHandler ke?
 
-Poore application ke liye **centralized error handling**
+Socho tumhare paas 10 REST APIs hain:
 
----
+* `/users`
+* `/orders`
+* `/payments`
 
-## 📄 `ApiError.java`
-
-(Standard response structure)
+Agar har controller me tum ye likhne lago:
 
 ```java
-package com.example.demo.exception;
-
-import java.time.LocalDateTime;
-
-/**
- * Common error response format
- */
-public class ApiError {
-
-    private int status;
-    private String message;
-    private LocalDateTime timestamp;
-
-    public ApiError(int status, String message) {
-        this.status = status;
-        this.message = message;
-        this.timestamp = LocalDateTime.now();
-    }
-
-    // getters & setters
+try {
+   // logic
+} catch(Exception e) {
+   return ResponseEntity.status(500).body("Something went wrong");
 }
 ```
 
+👉 Code **repeat** ho jata hai
+👉 Response **inconsistent** ho jata hai
+👉 Controller **messy** ho jata hai
+
 ---
 
-## 📄 `GlobalExceptionHandler.java`
+## 2️⃣ GlobalExceptionHandler kya karta hai? (Simple definition)
+
+> **GlobalExceptionHandler** ek **central place** hai jahan tum
+> poore application ki **exceptions handle** karte ho.
+
+📌 Matlab:
+
+* Controller clean
+* Error response consistent
+* Business logic alag, error handling alag
+
+---
+
+
+## 4️⃣ Core Annotations (Most Important)
+
+| Annotation          | Meaning                              |
+| ------------------- | ------------------------------------ |
+| `@ControllerAdvice or @RestControllerAdvice` | Batata hai ye **global handler** hai |
+| `@ExceptionHandler` | Kaunsi exception handle hogi         |
+| `@ResponseStatus`   | HTTP status set karta hai            |
+
+---
+
+## 5️⃣ Step-by-Step Code Example
+
+### 📌 Step 1: Custom Exception banao
 
 ```java
-package com.example.demo.exception;
+public class ResourceNotFoundException extends RuntimeException {
 
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
+```
 
-/**
- * Global handler for ALL controllers
- */
+👉 Jab user nahi milega, ye exception throw karenge
+
+---
+
+### 📌 Step 2: Controller me exception throw karo
+
+```java
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @GetMapping("/{id}")
+    public String getUser(@PathVariable int id) {
+
+        if (id != 1) {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
+
+        return "User Found";
+    }
+}
+```
+
+❌ Yahan **try-catch nahi** likha
+✅ Clean controller
+
+---
+
+### 📌 Step 3: GlobalExceptionHandler banao
+
+```java
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ApiError> handleUserNotFound(UserNotFoundException ex) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleResourceNotFound(
+            ResourceNotFoundException ex) {
 
-        ApiError error = new ApiError(
-                HttpStatus.NOT_FOUND.value(),
-                ex.getMessage()
-        );
-
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
     }
 
-    @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<ApiError> handleOrderNotFound(OrderNotFoundException ex) {
-
-        ApiError error = new ApiError(
-                HttpStatus.NOT_FOUND.value(),
-                ex.getMessage()
-        );
-
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-    }
-
-    /**
-     * Fallback handler
-     */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleGeneric(Exception ex) {
+    public ResponseEntity<String> handleGenericException(
+            Exception ex) {
 
-        ApiError error = new ApiError(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Internal server error"
-        );
-
-        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Something went wrong");
     }
 }
 ```
 
-### 🧠 Flow
+---
 
+## 6️⃣ Flow kaise kaam karta hai? (Important)
+
+1. Request aayi → `/users/5`
+2. Controller ne exception throw ki
+3. Spring dekhta hai:
+
+    * Kya koi `@ControllerAdvice` hai? ✅
+4. Matching `@ExceptionHandler` milta hai
+5. Wahi se response return hota hai
+
+📌 Controller ko pata bhi nahi chalta
+
+---
+
+## 7️⃣ Proper Error Response (Best Practice)
+
+Production me sirf string return mat karo
+👉 **Standard error response banao**
+
+### ErrorResponse class
+
+```java
+import java.time.LocalDateTime;
+
+public class ErrorResponse {
+
+    private String message;
+    private int status;
+    private LocalDateTime timestamp;
+
+    public ErrorResponse(String message, int status) {
+        this.message = message;
+        this.status = status;
+        this.timestamp = LocalDateTime.now();
+    }
+
+    // getters
+}
 ```
-ANY Controller
-   ↓
-Service throws exception
-   ↓
-GlobalExceptionHandler
-   ↓
-Consistent JSON response
+
+---
+
+### Updated GlobalExceptionHandler
+
+```java
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFound(
+            ResourceNotFoundException ex) {
+
+        ErrorResponse error = new ErrorResponse(
+                ex.getMessage(),
+                HttpStatus.NOT_FOUND.value()
+        );
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+}
 ```
+
+---
+
+## 8️⃣ Sample API Response
+
+```json
+{
+  "message": "User not found with id: 5",
+  "status": 404,
+  "timestamp": "2026-02-02T14:30:12"
+}
+```
+
+✔ Clean
+✔ Consistent
+✔ Frontend-friendly
+
+---
+
+## 9️⃣ Common Exceptions jo tum handle kar sakte ho
+
+```java
+@ExceptionHandler(MethodArgumentNotValidException.class)
+@ExceptionHandler(NullPointerException.class)
+@ExceptionHandler(IllegalArgumentException.class)
+@ExceptionHandler(HttpMessageNotReadableException.class)
+```
+
+---
+
+## 🔥 Interview Line (Use this)
+
+> “GlobalExceptionHandler helps in centralized exception handling using `@ControllerAdvice`, keeping controllers clean and providing consistent error responses across the application.”
 
 ---
 
