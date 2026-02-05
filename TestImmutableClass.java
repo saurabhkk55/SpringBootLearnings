@@ -17,7 +17,6 @@ class Immutable {
     public Immutable(String name, int age, HashMap<String, String> metadata) {
         this.name = name;
         this.age = age;
-
         this.metadata = new HashMap<>(metadata);
     }
 
@@ -58,18 +57,18 @@ public class TestImmutableClass {
         System.out.println("Original map (metadata1) after modification: " + metadata1);
 
         // the immutable object's state shouldn't change, showing that internal state is not affected
-        System.out.println("After modifying original map metadata1, immutable object remains unchanged: " + immutable);
+        System.out.println("After modifying original map (metadata1), immutable object remains unchanged: " + immutable);
 
         // Attempt to modify the return map
         // When the metadata field (HashMap) is accessed via the getMetadata() method, a deep copy is returned.
         // Modifying the returned map does not affect the original state of the object
         immutable.getMetadata().put("key4", "value4");
-        System.out.println("After modifying returned map: " + immutable);
+        System.out.println("After modifying returned map, immutable object remains unchanged: " + immutable);
     }
 }
 
 //=========OUTPUT
 //Immutable[name=Saurabh, age=27, metadata={key1=value1, key2=value2}]
 //Original map (metadata1) after modification: {key1=value1, key2=value2, key3=value3}
-//After modifying original map metadata1, immutable object remains unchanged: Immutable[name=Saurabh, age=27, metadata={key1=value1, key2=value2}]
-//After modifying returned map: Immutable[name=Saurabh, age=27, metadata={key1=value1, key2=value2}]
+//After modifying original map (metadata1), immutable object remains unchanged: Immutable[name=Saurabh, age=27, metadata={key1=value1, key2=value2}]
+//After modifying returned map, immutable object remains unchanged: Immutable[name=Saurabh, age=27, metadata={key1=value1, key2=value2}]
