@@ -20,8 +20,6 @@
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    private ObjectError fieldName;
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
