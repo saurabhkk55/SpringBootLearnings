@@ -31,8 +31,8 @@ public class User {
 
 📌 `@JsonIgnore` works for:
 
-* ❌ Not considered for Serialization (Java → JSON)
-* ❌ Not considered for Deserialization (JSON → Java)
+* ❌ Not considered for **Serialization (Java → JSON)**
+* ❌ Not considered for **Deserialization (JSON → Java)**
 
 ---
 
