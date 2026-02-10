@@ -154,3 +154,41 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, St
     }
 }
 ```
+
+
+# Postman
+
+```java
+API or endpint or url: http://localhost:8080/core/createUser
+HttpMethod: Post
+payload:
+{
+    "name": null,
+    "username": "",
+    "password": 12345,
+    "age": 1,
+    "salary": 85000.50,
+    "accountBalance": 2500098.75,
+    "email": "saurabh.kumargmail.com",
+    "corporateEmail": "sAaurabh@theCuriousCoder.org",
+    "dob": "2999-06-15",
+    "userExpiry": "1027-12-31",
+    "hobbies": [],
+    "phoneNumber": "4020202020"
+}
+
+Response:
+{
+    "password": "Password length should be >= 6 but <= 20",
+    "phoneNumber": "Phone number is not in the required format",
+    "hobbies": "User must have at least 1 hobby",
+    "dob": "Date of birth must be some past date",
+    "userExpiry": "Expiry must be some future date",
+    "name": "Name cannot be null",
+    "corporateEmail": "Email must be a valid corporate email ending with @theCuriousCoder.com",
+    "accountBalance": "Account balance must not be grater than 6 figures",
+    "age": "Minimum age should be 6",
+    "email": "Email should be in proper format",
+    "username": "UserName cannot be null"
+}
+```
