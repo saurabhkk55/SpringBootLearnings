@@ -97,6 +97,8 @@ public class User {
 
 # UserController.java
 
+- All the validations annotations (`@NotNull`, `@@NotEmpty`, etc) will work only if we use `@Valid` annotation.
+
 ```java
 @RestController
 @RequestMapping("/core")
