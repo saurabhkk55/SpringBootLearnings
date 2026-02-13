@@ -85,6 +85,14 @@ http.authorizeHttpRequests(auth -> auth
 | `hasAnyRole()`     | Any one role allowed |
 | `denyAll()`        | Block everyone       |
 
+| Method          | Requires Login | Requires Role |
+| --------------- | -------------- | ------------- |
+| `permitAll()`    | ❌             | ❌            |
+| `authenticated()` | ✅             | ❌            |
+| `hasRole()`      | ✅             | ✅            |
+| `hasAnyRole()`   | ✅             | ✅            |
+
+
 ### 🔍 URL Matching Methods
 
 ```java
