@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-// Rules to create a Immutable class:
+// Rules to create an Immutable class:
 //1. Declare the class as final to prevent subclassing.
 //2. Make all fields private and final to ensure they cannot be modified.
 //3. Do not provide setters or methods that modify fields.
@@ -8,7 +8,7 @@ import java.util.HashMap;
 //5. Ensure deep copying for mutable fields or collections to prevent external modification.
 //6. Return deep copies of mutable fields in getter methods.
 
-class Immutable {
+final class Immutable {
     private final String name;
     private final int age;
     private final HashMap<String, String> metadata;
