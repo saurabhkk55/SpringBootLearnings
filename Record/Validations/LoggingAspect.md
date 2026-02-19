@@ -53,7 +53,7 @@ class LoggingAspect {
 
 # UserController.java
 
-- Use Custom decorator annotation on method of any class.
+- Use Custom decorator annotation on any method(s) of any class.
 
 ```java
 @RestController
