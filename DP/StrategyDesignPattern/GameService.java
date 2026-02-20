@@ -110,20 +110,19 @@ public class GameService {
 
         GameCharacter character = new GameCharacter(gun, fly);
 
-        character.performAttack();
-        character.performMove();
+        character.performAttack(); // Gun Attack
+        character.performMove(); // Flying
 
         System.out.println("---- Changing Strategy at Runtime ----");
 
-        character.setAttackStrategy(sword);
-        character.setMoveStrategy(swim);
+        character.setAttackStrategy(sword); // Sword Attack
+        character.setMoveStrategy(swim); // Swimming
 
-        character.performAttack();
-        character.performMove();
+        character.performAttack(); // No Attack Mode Selected
+        character.performMove(); // No Move Mode Selected
 
         GameCharacter character1 = new GameCharacter(null, null);
         character1.performAttack();
         character1.performMove();
-
     }
 }

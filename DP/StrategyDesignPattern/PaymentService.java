@@ -46,13 +46,13 @@ public class PaymentService {
         PaymentContext context = new PaymentContext();
 
         context.setPaymentStrategy(new UPIPayment());
-        context.makePayment(500);
+        context.makePayment(500); // Paid 500.0 using UPI
 
         context.setPaymentStrategy(new CreditCardPayment());
-        context.makePayment(1200);
+        context.makePayment(1200); // Paid 1200.0 using Credit Card
 
         context.setPaymentStrategy(new NetBankingPayment());
-        context.makePayment(2000);
+        context.makePayment(2000); // Paid 2000.0 using Net Banking
     }
 }
 

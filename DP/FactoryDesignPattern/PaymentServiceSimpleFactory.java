@@ -29,8 +29,8 @@
 //    }
 //}
 //
-//// it is example of simple factory which is not a design pattern because to voilates 'O' of 'SOLID'
-//// 'O' -> class should be open for extension and closed for edit
+// it is example of simple factory which is not a design pattern because it violates 'O' of 'SOLID'
+// 'O' -> class should be open for extension and closed for edit
 //class PaymentFactory {
 //    public static Payment createPayment(PaymentMode paymentMode) {
 //        if (paymentMode == null) {
