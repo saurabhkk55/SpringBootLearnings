@@ -1,8 +1,11 @@
 package SapientEmployeeStream;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Main {
     static void main(String[] args) {
@@ -30,5 +33,34 @@ class Main {
                 .collect(Collectors.toList());
 
         System.out.println(ListOfEmpWithMaxSalaryFromEachDept);
+
+
+        Map<String, Optional<Employee>> collect = employeeList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparing(Employee::getSalary)),
+                                empOpt -> empOpt
+//                                        .map(e -> e.getDepartment() + " => " + e.getName())
+//                                        .orElse("")
+                        )
+                ));
+//                .values()
+//                .stream()
+//                .collect(Collectors.toList());
+
+        System.out.println(collect);
+
+        Map<String, Optional<Long>> collect1 = employeeList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                emplist -> emplist.stream()
+                                        .max((e1, e2) -> Math.toIntExact(e1.getSalary() - e2.getSalary()))
+                                        .map(Employee::getSalary)
+                        )
+                ));
+        System.out.println(collect1);
     }
 }

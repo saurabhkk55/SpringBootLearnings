@@ -1,6 +1,6 @@
 package DP.DecoratorDesignPattern;
 
-interface Coffee{
+interface  Coffee{
     String getDesc();
     int getPrice();
 }

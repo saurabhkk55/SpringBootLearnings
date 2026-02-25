@@ -19,21 +19,21 @@ public class Employee {
     public static List<Employee> getEmployeeList() {
         List<Employee> empList = new ArrayList<>();
         empList
-                .addAll
+            .addAll
+                (
+                    List.of
                         (
-                                List.of
-                                        (
-                                                new Employee(101L, "Saurabh", "SE", 40000L),
-                                                new Employee(101L, "Rahul", "SE", 50000L),
-                                                new Employee(101L, "Rosy", "HR", 60000L),
-                                                new Employee(101L, "John", "IT", 70000L),
-                                                new Employee(101L, "Ben", "IT", 80000L),
-                                                new Employee(101L, "Rashi", "SE", 60000L),
-                                                new Employee(101L, "Monty", "IT", 70000L),
-                                                new Employee(101L, "Ricky", "HR", 40000L),
-                                                new Employee(101L, "Gian", "SE", 70000L)
-                                        )
-                        );
+                            new Employee(101L, "Saurabh", "SE", 40000L),
+                            new Employee(101L, "Rahul", "SE", 50000L),
+                            new Employee(101L, "Rosy", "HR", 60000L),
+                            new Employee(101L, "John", "IT", 70000L),
+                            new Employee(101L, "Ben", "IT", 80000L),
+                            new Employee(101L, "Rashi", "SE", 60000L),
+                            new Employee(101L, "Monty", "IT", 70000L),
+                            new Employee(101L, "Ricky", "HR", 40000L),
+                            new Employee(101L, "Gian", "SE", 70000L)
+                        )
+                );
         return empList;
     }
 

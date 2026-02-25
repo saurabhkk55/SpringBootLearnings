@@ -1,164 +1,149 @@
-Bilkul 👍
-**Builder Design Pattern** ko simple Hinglish + real-life example ke saath samjhaata hoon.
+## Builder Design Pattern in Java (with Mandatory & Optional Fields)
+
+Builder pattern is used when:
+
+* Object has **many fields**
+* Some fields are **mandatory**
+* Some fields are **optional**
+* You want clean and readable object creation
 
 ---
 
-## Builder Design Pattern kya hota hai?
+## 🔹 Real-Life Example
 
-**Builder Pattern** tab use hota hai jab:
+Let’s create a `User` object.
 
-* Object **bahut complex** ho
-* **Bahut saare optional fields** ho
-* Constructor me 5–10 parameters bhejna **confusing** ho jata ho
+### Requirements:
 
-👉 Builder pattern object ko **step-by-step** build karta hai.
+* **Mandatory fields** → `name`, `email`
+* **Optional fields** → `age`, `phone`, `address`
 
 ---
 
-## Real-life example 🧱 (Burger banwana)
-
-Socho tum burger order kar rahe ho 🍔
-
-Options:
-
-* Bun type (regular / wheat)
-* Patty (veg / chicken)
-* Cheese (yes / no)
-* Extra toppings (yes / no)
-
-Agar constructor hota:
+## ✅ Implementation
 
 ```java
-new Burger("wheat", "veg", true, true, false, true);
-```
+public class User {
 
-🤯 → samajh nahi aa raha kaunsa `true` kis cheez ka hai
+    // Mandatory fields
+    private final String name;
+    private final String email;
 
----
+    // Optional fields
+    private final int age;
+    private final String phone;
+    private final String address;
 
-## Builder Pattern solution ✅
-
-Tum bolte ho:
-
-> Bhaiya, wheat bun do
-> Veg patty do
-> Cheese add karo
-> Extra mayo bhi
-
-Exactly yehi Builder karta hai 👍
-
----
-
-## Code Example (Simple & Clean)
-
-### 1️⃣ Product class (Object jo banega)
-
-```java
-class Burger {
-    private String bun;
-    private String patty;
-    private boolean cheese;
-    private boolean mayo;
-
-    // private constructor
-    private Burger(BurgerBuilder builder) {
-        this.bun = builder.bun;
-        this.patty = builder.patty;
-        this.cheese = builder.cheese;
-        this.mayo = builder.mayo;
+    // Private constructor (only Builder can create object)
+    private User(Builder builder) {
+        this.name = builder.name;
+        this.email = builder.email;
+        this.age = builder.age;
+        this.phone = builder.phone;
+        this.address = builder.address;
     }
 
-    public void showBurger() {
-        System.out.println(
-            "Burger with " + bun + " bun, " + patty +
-            ", cheese: " + cheese +
-            ", mayo: " + mayo
-        );
+    // Static Builder class
+    public static class Builder {
+
+        // Mandatory fields
+        private final String name;
+        private final String email;
+
+        // Optional fields (default values allowed)
+        private int age;
+        private String phone;
+        private String address;
+
+        // Constructor with mandatory fields
+        public Builder(String name, String email) {
+            this.name = name;
+            this.email = email;
+        }
+
+        // Optional setters (return Builder for chaining)
+        public Builder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        // Build method
+        public User build() {
+            return new User(this);
+        }
     }
 
-    // 🧱 Builder class
-    static class BurgerBuilder {
-        private String bun;
-        private String patty;
-        private boolean cheese;
-        private boolean mayo;
-
-        public BurgerBuilder setBun(String bun) {
-            this.bun = bun;
-            return this;
-        }
-
-        public BurgerBuilder setPatty(String patty) {
-            this.patty = patty;
-            return this;
-        }
-
-        public BurgerBuilder addCheese(boolean cheese) {
-            this.cheese = cheese;
-            return this;
-        }
-
-        public BurgerBuilder addMayo(boolean mayo) {
-            this.mayo = mayo;
-            return this;
-        }
-
-        public Burger build() {
-            return new Burger(this);
-        }
+    @Override
+    public String toString() {
+        return "User{name='" + name + "', email='" + email + 
+               "', age=" + age + ", phone='" + phone + 
+               "', address='" + address + "'}";
     }
 }
 ```
 
 ---
 
-### 2️⃣ Client code (Use kaise kare)
+## ✅ How to Use
 
 ```java
-public class BuilderPatternDemo {
+public class Main {
     public static void main(String[] args) {
-        Burger burger = new Burger.BurgerBuilder()
-                .setBun("Wheat")
-                .setPatty("Veg")
-                .addCheese(true)
-                .addMayo(false)
+
+        User user1 = new User.Builder("Saurabh", "saurabh@gmail.com")
+                .age(25)
+                .phone("9876543210")
                 .build();
 
-        burger.showBurger();
+        User user2 = new User.Builder("Rahul", "rahul@gmail.com")
+                .build();  // only mandatory fields
     }
 }
 ```
 
 ---
 
-## Output
+## 🔹 Why This Is Good?
 
+Without Builder:
+
+```java
+new User("Saurabh", "email", 25, null, null);
 ```
-Burger with Wheat bun, Veg, cheese: true, mayo: false
+
+👉 Confusing
+👉 Order mistakes possible
+👉 Hard to read
+
+With Builder:
+
+```java
+new User.Builder("Saurabh", "email")
+        .age(25)
+        .build();
 ```
+
+✔ Readable
+✔ Flexible
+✔ Immutable object
+✔ Mandatory fields enforced
 
 ---
 
-## Builder Pattern kab use kare? 🤔
+## 🔹 Key Points (Interview Important)
 
-Use karo jab:
-
-* Constructor me **too many parameters** ho
-* **Immutable object** banana ho
-* Readability important ho
-* Optional fields zyada ho
-
-❌ Mat use karo jab:
-
-* Sirf 2–3 fields ho
-* Object simple ho
-
----
-
-## Builder vs Constructor
-
-| Constructor             | Builder                 |
-| ----------------------- | ----------------------- |
-| Hard to read            | Easy to read            |
-| Order yaad rakhna padta | Order matter nahi karta |
-| Optional fields messy   | Clean & flexible        |
+* Make constructor **private**
+* Mandatory fields in **Builder constructor**
+* Optional fields via **method chaining**
+* `build()` returns final object
+* Usually used in **immutable classes**

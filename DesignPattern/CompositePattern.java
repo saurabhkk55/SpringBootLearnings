@@ -47,7 +47,7 @@ class Folder implements FileStructure {
     }
 }
 
-public class CompositePattern {
+public class  CompositePattern {
     static void main() {
         File file1 = new File("java.pdf");
         File file2 = new File("resume.txt");

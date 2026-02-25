@@ -3,7 +3,7 @@ package DP.StrategyDesignPattern;
 import java.util.Objects;
 
 // ================= Attack Strategy =================
-interface AttackStrategy {
+interface  AttackStrategy {
     void attack();
 }
 
