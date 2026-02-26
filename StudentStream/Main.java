@@ -6,33 +6,41 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
-  public static void main(String[] args) {
-    Map<Double, List<Integer>> collect = Student.getStudentList().stream()
-            .collect(Collectors.groupingBy(s -> s.getMarks(), Collectors.mapping(s -> s.getId(), Collectors.toList())));
+    public static void main(String[] args) {
 
-    System.out.println(collect);
+        List<Student> studentList = Student.getStudentList();
 
-    Map<Double, List<Integer>> collect1 = collect.entrySet().stream()
-            .filter(s -> s.getValue().size() > 1)
-            .collect(Collectors.toMap(s -> s.getKey(), s -> s.getValue()));
+        // Method 1: Group Students by the same marks
+        Map<Double, List<Integer>> groupStudentsByMarks = studentList.stream()
+                .collect(Collectors.groupingBy(Student::getMarks, Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        studentList1 -> studentList1.stream().map(Student::getId).toList()
+                )));
+        System.out.println(groupStudentsByMarks); // {75.0=[4], 85.0=[1, 3], 90.0=[2, 5]}
 
-    System.out.println(collect1);
+        // Method 2: Group Students by the same marks
+        Map<Double, List<Integer>> groupStudentsByMarks1 = studentList.stream()
+                .collect(Collectors.groupingBy(Student::getMarks, Collectors.mapping(Student::getId, Collectors.toList())));
+        System.out.println(groupStudentsByMarks1); // {75.0=[4], 85.0=[1, 3], 90.0=[2, 5]}
 
-    List<Integer> collect2 = collect.values().stream()
-            // .flatMap(List::stream)
-            .flatMap(listOfIntegers -> listOfIntegers.stream())
-            .collect(Collectors.toList());
+        // Group Students by the same marks but group size should be more than 1
+        Map<Double, List<Integer>> onlyMultiStudentsWithTheSameMarks = groupStudentsByMarks.entrySet().stream()
+                .filter(item -> item.getValue().size() > 1)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        System.out.println(onlyMultiStudentsWithTheSameMarks); // {85.0=[1, 3], 90.0=[2, 5]}
 
-    System.out.println(collect2);
+        // Ids of all students
+        List<Integer> allStudentsId = groupStudentsByMarks.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .flatMap(List::stream)
+                .toList();
+        System.out.println(allStudentsId); // [4, 1, 3, 2, 5]
 
-    // Generate a list of nicknames' length for each of the students
-    Stream<List<String>> stream_of_list_of_nickNames = Student.getStudentList().stream()
-                                                            .map(s -> s.getNickNames());
-    Stream<Integer> stream_of_nickName_length = stream_of_list_of_nickNames.flatMap(listOfNickNames -> {
-      Stream<Integer> integerStream = listOfNickNames.stream().map(nickName -> nickName.length());
-      return integerStream;
-    });
-    List<Integer> collect3 = stream_of_nickName_length.collect(Collectors.toList());
-    System.out.println(collect3);
-  }
+        // Nicknames of all students
+        List<String> allStudentsNickNames = studentList.stream()
+                .map(Student::getNickNames)
+                .flatMap(List::stream)
+                .toList();
+        System.out.println(allStudentsNickNames); // [pinky, tara, kiara, alia, disha, scarlett, Kate, Kristy, Kareena, Katrina, Jacquline]
+    }
 }
