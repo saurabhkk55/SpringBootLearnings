@@ -1,8 +1,3 @@
-Bhai Saurabh, DB se **data effectively aur kam time mein read** karna sirf `SELECT *` likhne ka game nahi hai 🙂
-Main **simple → practical → Spring Boot + real-world** angle se samjha raha hoon.
-
----
-
 ## 1️⃣ Sabse pehle: Problem kahan hoti hai?
 
 DB read slow hota hai kyunki:
@@ -228,11 +223,3 @@ SELECT * FROM users WHERE id IN (1,2,3);
 ## 🧠 One-liner interview answer:
 
 > “Fast DB read ke liye indexing, limited column fetch, pagination, N+1 avoidance, caching aur connection pooling use karte hain.”
-
-Agar tu chahe:
-
-* 🔥 **Spring Boot real project example**
-* 🔥 **Slow query ko fast kaise banaye (EXPLAIN plan)**
-* 🔥 **Redis vs DB read comparison**
-
-bol bhai, next kya deep dive kare? 🚀
