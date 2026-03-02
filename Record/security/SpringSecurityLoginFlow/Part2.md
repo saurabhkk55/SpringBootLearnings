@@ -87,8 +87,11 @@ Ye filter:
 ### 🔸 YAHAN PEHLA Authentication OBJECT BANTA HAI
 
 ```java
-UsernamePasswordAuthenticationToken authRequest =
-        new UsernamePasswordAuthenticationToken(username, password);
+UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+
+// OR
+
+Authentication authRequest = new UsernamePasswordAuthenticationToken(username, password);
 ```
 
 📌 Is object ki state:
@@ -200,8 +203,7 @@ SecurityContextHolder
 ```
 
 ```java
-SecurityContextHolder.getContext()
-        .setAuthentication(authenticatedToken);
+SecurityContextHolder.getContext().setAuthentication(authenticatedToken);
 ```
 
 📌 Ab Spring bolta hai:
