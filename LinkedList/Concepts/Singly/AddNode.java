@@ -209,6 +209,11 @@ class LinkedList {
         return head;
     }
 
+    public Node setHeadNode(Node headNode) {
+        head = headNode;
+        return head;
+    }
+
     public void getTailNode() {
         if (!Objects.isNull(tail)) System.out.println("Tail Node: " + tail + "[" + tail.data + " | " + tail.next + "]");
         else System.out.println("Tail Node: " + tail);
@@ -217,6 +222,21 @@ class LinkedList {
     public void setHeadAndTailNodeToNull() {
         head = null;
         tail = null;
+    }
+
+    public Node reverseLinkedistUsingRecursion(Node head) {
+
+        if(head == null) return null;
+
+        Node currNode = head;
+        Node nextNode = head.next;
+
+        Node node = reverseLinkedistUsingRecursion(nextNode);
+
+        if(node != null) node.next = currNode;
+        else setHeadNode(currNode);
+
+        return currNode;
     }
 }
 
@@ -248,9 +268,13 @@ public class AddNode {
         linkedList.searchNodeHavingData(8);
         linkedList.searchNodeHavingData(70);
 
-        linkedList.reverseLinkedist();
+        linkedList.displayLinkedList();
 
-        System.out.println("linkedListLength: " + linkedList.getLinkedListLength());
+        linkedList.reverseLinkedist();
+        linkedList.displayLinkedList();
+
+        Node node = linkedList.reverseLinkedistUsingRecursion(linkedList.getHeadNode());
+        node.next = null;
         linkedList.displayLinkedList();
 
         linkedList.getHeadNode();
