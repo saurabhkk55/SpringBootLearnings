@@ -9,7 +9,7 @@ A **foreign key** is a column that references the **primary key (or unique key)*
 
 ---
 
-# 📊 Example — Multiple Foreign Keys in One Table
+# 📊 Example — Multiple Foreign Keys in streams.One Table
 
 ### Parent Tables
 
@@ -109,6 +109,6 @@ Hibernate automatically creates foreign keys for both.
 
 ---
 
-# 🎯 Interview One-Line Answer
+# 🎯 Interview streams.One-Line Answer
 
 > Yes, a table can have multiple foreign keys because each foreign key represents a relationship with another table.

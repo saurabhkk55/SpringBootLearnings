@@ -1,3 +1,5 @@
+package streams;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +38,7 @@ public class FlatMap {
                 .toList();
         System.out.println(list2);
 
-        // Approach 1: doesn't maintain insertion order
+        // Approach 1: don't maintain insertion order
         Set<String> collect = words.stream()
                 .flatMap(str -> Arrays.stream(str.split("")))
                 .collect(Collectors.toSet());

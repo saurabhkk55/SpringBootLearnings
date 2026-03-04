@@ -1,6 +1,6 @@
 # ✅ 1️⃣ Simplest Way (Directly Creating Virtual Thread)
 
-### 🔹 One Virtual Thread
+### 🔹 streams.One Virtual Thread
 
 ```java
 public class VirtualThreadExample {

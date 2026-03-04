@@ -1,3 +1,5 @@
+package streams;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,9 +10,8 @@ public class FindDuplicate {
         Set<Integer> hs = new HashSet<>();
 
         Set<Integer> duplicates = ls.stream()
-                .filter(x -> !hs.add(x))
+                .filter(num -> !hs.add(num))
                 .collect(Collectors.toSet());
-
-        duplicates.stream().forEach(x -> System.out.println(x));
+        System.out.println(duplicates);
     }
 }

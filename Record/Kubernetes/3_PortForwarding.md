@@ -141,6 +141,6 @@ kubectl port-forward deploy/myapp 8080:80
 
 ---
 
-# ⭐ Interview-Ready One-Line Definition
+# ⭐ Interview-Ready streams.One-Line Definition
 
 > Port-forwarding in Kubernetes temporarily tunnels traffic from a local port to a pod or service port using the Kubernetes API server without exposing it externally.

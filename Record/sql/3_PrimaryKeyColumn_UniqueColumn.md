@@ -125,6 +125,6 @@ private String email;
 
 ---
 
-## 🎯 Interview One-Line Difference
+## 🎯 Interview streams.One-Line Difference
 
 > Primary key uniquely identifies each row and cannot be null, while a unique column only prevents duplicate values and can allow null.

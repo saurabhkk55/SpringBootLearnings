@@ -242,6 +242,6 @@ Fallback
 
 ---
 
-## 13. One‑Line Summary
+## 13. streams.One‑Line Summary
 
 > **Resilience4j RateLimiter controls how many requests are allowed in a given time window to protect downstream services from traffic spikes.**

@@ -242,7 +242,7 @@ docker run --entrypoint bash myimage
 
 * Microservices
 * Batch jobs
-* One-purpose containers
+* streams.One-purpose containers
 
 ---
 
@@ -396,7 +396,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 ---
 
-# 🔹 One-Line Mental Model
+# 🔹 streams.One-Line Mental Model
 
 | Instruction | Meaning           |
 | ----------- | ----------------- |

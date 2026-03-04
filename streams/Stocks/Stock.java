@@ -1,4 +1,4 @@
-package Stocks;
+package streams.Stocks;
 
 public class Stock {
     String type;

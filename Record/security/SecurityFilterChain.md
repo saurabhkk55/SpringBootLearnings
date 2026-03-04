@@ -413,7 +413,7 @@ Controller
 
 ---
 
-# 7️⃣ Key Takeaway (In One Line)
+# 7️⃣ Key Takeaway (In streams.One Line)
 
 > **SecurityFilterChain is the rulebook that tells Spring Security how to authenticate, authorize, protect, and respond to every HTTP request.**
 

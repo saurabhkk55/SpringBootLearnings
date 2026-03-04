@@ -14,13 +14,13 @@ Then:
 * Tomcat maintains a **thread pool**
 * For every incoming HTTP request:
 
-    * One thread from the pool is assigned
+    * streams.One thread from the pool is assigned
     * That thread handles the complete lifecycle of the request
     * After response → thread returns to pool
 
 So it is:
 
-> **One request → One thread (from pool)**
+> **streams.One request → streams.One thread (from pool)**
 
 ---
 
@@ -46,7 +46,7 @@ Thread released back to pool
 
 It is NOT:
 
-* ❌ One new thread created per request
+* ❌ streams.One new thread created per request
 * ✅ It uses a **fixed-size thread pool**
 
 Default max threads in Tomcat (Spring Boot) ≈ **200**

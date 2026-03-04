@@ -106,7 +106,7 @@ public class LargestElement {
             System.out.print(elem + " ");
         }
 
-        // 7. Left Rotate the Array by One
+        // 7. Left Rotate the Array by streams.One
         int[] arr8 = { 1, 2, 3, 4, 5 }; // OUTPUT: [2, 3, 4, 5, 1]
 
         int arrLength = arr8.length;

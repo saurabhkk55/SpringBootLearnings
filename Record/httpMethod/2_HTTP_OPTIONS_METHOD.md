@@ -122,7 +122,7 @@ public ResponseEntity<Void> options() {
 
 ---
 
-## 🎯 Interview One-Liners
+## 🎯 Interview streams.One-Liners
 
 * **OPTIONS tells what HTTP methods are supported by a resource**
 * **Used mainly for CORS preflight**

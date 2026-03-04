@@ -219,7 +219,7 @@ Unknown fields ignored safely
 
 ---
 
-# 🧠 Interview One-Liner (Memorize This)
+# 🧠 Interview streams.One-Liner (Memorize This)
 
 > *DTOs decouple API contracts from database entities, improve security, prevent over-posting, and make applications easier to maintain and evolve.*
 

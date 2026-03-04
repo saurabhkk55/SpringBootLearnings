@@ -204,7 +204,7 @@ Exception message: SMTP server down
 
 ---
 
-## 💣 Interview One-Liner
+## 💣 Interview streams.One-Liner
 
 > **`@Async void` methods caller ko exception propagate nahi karti.
 > Failures sirf `AsyncUncaughtExceptionHandler` me handle kiye ja sakte hain,
@@ -376,7 +376,7 @@ public CompletableFuture<Integer> placeOrder() {
 
 ---
 
-## 💣 Interview One-Liner
+## 💣 Interview streams.One-Liner
 
 > **`Future` with `@Async` is a legacy pattern because it requires blocking calls and wraps exceptions inside `ExecutionException`.
 > `CompletableFuture` provides non-blocking, composable, and cleaner async handling.**
@@ -575,7 +575,7 @@ service.callRemoteApi()
 
 ---
 
-# 💣 Final Interview One-Liner
+# 💣 Final Interview streams.One-Liner
 
 > **`@Async` already executes the method asynchronously using Spring’s executor and automatically completes the returned `CompletableFuture`.
 > Using `supplyAsync()` again causes double async execution and loss of executor control, so only one async mechanism should be used.**

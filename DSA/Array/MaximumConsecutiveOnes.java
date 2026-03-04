@@ -21,6 +21,6 @@ public class MaximumConsecutiveOnes {
             }
         }
 
-        System.out.println("Maximum Consecutive One's in the given array: " + maxCounter);
+        System.out.println("Maximum Consecutive streams.One's in the given array: " + maxCounter);
     }
 }

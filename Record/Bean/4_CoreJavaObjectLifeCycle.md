@@ -294,7 +294,7 @@ Class loading happens when:
 
 ---
 
-## 🔹 1.7️⃣ Interview-Ready One-Liners 🔥
+## 🔹 1.7️⃣ Interview-Ready streams.One-Liners 🔥
 
 ✔ `.class` file is generated using `javac`
 ✔ JVM loads class before object creation
@@ -557,7 +557,7 @@ class Demo {
 
 ---
 
-## 🎯 Interview-Ready Summary (One Page)
+## 🎯 Interview-Ready Summary (streams.One Page)
 
 * Class loads once
 * Object created using `new`

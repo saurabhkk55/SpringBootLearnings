@@ -1,4 +1,4 @@
-package SapientEmployeeStream;
+package streams.SapientEmployeeStream;
 
 import java.util.ArrayList;
 import java.util.List;

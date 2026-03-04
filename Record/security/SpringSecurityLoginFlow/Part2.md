@@ -273,7 +273,7 @@ Stored in SecurityContext
 
 ---
 
-## 📌 Interview-Ready One Liner
+## 📌 Interview-Ready streams.One Liner
 
 > "Spring Security first creates an unauthenticated Authentication token from username and password, and only after successful verification replaces it with an authenticated token stored in the SecurityContext."
 

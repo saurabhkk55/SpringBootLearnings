@@ -361,7 +361,7 @@ But **switch pattern matching** is a **different feature** (Java 17+ preview / J
 
 ---
 
-# 17. Final Summary (One-Liners)
+# 17. Final Summary (streams.One-Liners)
 
 * Pattern Matching for `instanceof` removes **explicit casting**
 * Improves **readability**, **safety**, and **maintainability**

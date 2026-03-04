@@ -95,7 +95,7 @@ existingUser.setAge(newUser.getAge()); // newUser.getAge() = null
 
 ---
 
-### 🔥 Interview One-Liner (Risk)
+### 🔥 Interview streams.One-Liner (Risk)
 
 > **PUT me agar complete payload na bheja jaye, to missing fields NULL ya default ho sakti hain.**
 
@@ -236,7 +236,7 @@ public User patchUser(
 
 ---
 
-## 5️⃣ Interview One-Liners (Must Remember)
+## 5️⃣ Interview streams.One-Liners (Must Remember)
 
 * **PUT replaces the entire resource**
 * **PATCH modifies only the provided fields**

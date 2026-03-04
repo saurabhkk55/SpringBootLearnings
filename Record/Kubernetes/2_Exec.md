@@ -55,7 +55,7 @@ Then exec into it.
 
 ---
 
-✅ **One-line shortcut pros use**
+✅ **streams.One-line shortcut pros use**
 
 ```
 kubectl exec -it $(kubectl get pod -l app=myapp -o jsonpath="{.items[0].metadata.name}") -- sh

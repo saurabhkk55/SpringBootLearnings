@@ -131,6 +131,6 @@ private List<String> roles;
 
 ---
 
-# 🧠 Interview One-Liner
+# 🧠 Interview streams.One-Liner
 
 > `@JsonInclude(NON_NULL)` excludes null-valued fields from JSON responses to produce clean and efficient APIs.

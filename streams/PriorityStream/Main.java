@@ -1,4 +1,4 @@
-package PriorityStream;
+package streams.PriorityStream;
 
 import java.util.Arrays;
 import java.util.List;

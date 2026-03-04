@@ -270,6 +270,6 @@ Retry → Circuit Breaker → Fallback
 
 ---
 
-## 15. One-Line Summary
+## 15. streams.One-Line Summary
 
 > **Resilience4j Retry temporary failures ko safely handle karta hai by limited retries with controlled wait time, aur complete failure ke case me fallback provide karta hai.**

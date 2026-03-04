@@ -1,6 +1,4 @@
-package StudentStream2;
-
-import java.util.Objects;
+package streams.StudentStream2;
 
 public class Student implements Comparable<Student>{
     String name;

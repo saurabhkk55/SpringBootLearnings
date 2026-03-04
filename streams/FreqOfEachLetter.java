@@ -1,3 +1,5 @@
+package streams;
+
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 

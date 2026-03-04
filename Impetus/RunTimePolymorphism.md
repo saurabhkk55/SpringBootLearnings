@@ -94,6 +94,6 @@ Method selection depends on:
 
 ---
 
-### 🧠 Interview One-liner Answer
+### 🧠 Interview streams.One-liner Answer
 
 > Parent reference pointing to Child object calls Parent.m1(), but inside it `this.m2()` invokes Child’s overridden m2() due to runtime polymorphism.

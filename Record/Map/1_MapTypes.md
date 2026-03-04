@@ -34,7 +34,7 @@ Map (Interface)
 * Stores data in **key–value pairs**
 * **Keys are unique**
 * Values **can be duplicate**
-* One key → One value
+* streams.One key → streams.One value
 
 Example:
 
@@ -56,7 +56,7 @@ Example:
 
 ---
 
-# 4️⃣ Map Implementations – One by One
+# 4️⃣ Map Implementations – streams.One by streams.One
 
 ---
 
@@ -107,7 +107,7 @@ map.put(2, null);
 
 |            | Allowed?   |
 | ---------- | ---------- |
-| Null key   | ✅ One      |
+| Null key   | ✅ streams.One      |
 | Null value | ✅ Multiple |
 
 ### ✔ Thread Safe?

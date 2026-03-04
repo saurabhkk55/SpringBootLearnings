@@ -329,6 +329,6 @@ Reason:
 
 ---
 
-## 12. One-Line Summary
+## 12. streams.One-Line Summary
 
 > **Resilience4j Bulkhead limits concurrent outgoing calls at the caller side to prevent thread exhaustion and cascading failures.**

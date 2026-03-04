@@ -498,7 +498,7 @@ Mahesh Babu is acting 🔥
 
 ---
 
-## Step 7️⃣ One-line interview answer 🎯
+## Step 7️⃣ streams.One-line interview answer 🎯
 
 > **`autowireCandidate = false` excludes a bean from automatic type-based autowiring,
 > but the bean is still available in the IOC container and can be injected using name-based lookup with `@Qualifier`.**

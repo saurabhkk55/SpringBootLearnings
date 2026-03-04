@@ -7,7 +7,7 @@ public class One {
     public static void main(String[] args) {
         ExecutorService executors = Executors.newFixedThreadPool(3);
 
-        executors.submit(() -> System.out.println("One"));
+        executors.submit(() -> System.out.println("streams.One"));
         executors.submit(() -> System.out.println("Two"));
         executors.submit(() -> System.out.println("Three"));
         executors.submit(new DepSvc());

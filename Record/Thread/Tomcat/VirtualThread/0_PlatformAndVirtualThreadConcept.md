@@ -20,7 +20,7 @@ and virtual threads gets deattched when virtual thread makes IO operation and an
 
 # 🧵 Platform Threads (Traditional Java Threads)
 
-### 1️⃣ Memory Used by One Platform Thread
+### 1️⃣ Memory Used by streams.One Platform Thread
 
 In Java, a **platform thread** (created using `new Thread()`) is mapped 1:1 with an OS thread.
 
@@ -130,7 +130,7 @@ They are **lightweight threads managed by JVM**, not directly mapped 1:1 to OS t
 
 ---
 
-## 1️⃣ Memory Used by One Virtual Thread
+## 1️⃣ Memory Used by streams.One Virtual Thread
 
 Virtual threads:
 

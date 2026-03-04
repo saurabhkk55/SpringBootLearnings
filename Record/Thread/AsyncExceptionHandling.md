@@ -186,7 +186,7 @@ service.callRemoteApi()
 
 ---
 
-# 8️⃣ One-liner Interview Answer 💣
+# 8️⃣ streams.One-liner Interview Answer 💣
 
 > **`@Async` ke saath exception caller thread tak propagate nahi hoti.
 > `void` ke liye `AsyncUncaughtExceptionHandler`,

@@ -220,6 +220,6 @@ SELECT * FROM users WHERE id IN (1,2,3);
 
 ---
 
-## 🧠 One-liner interview answer:
+## 🧠 streams.One-liner interview answer:
 
 > “Fast DB read ke liye indexing, limited column fetch, pagination, N+1 avoidance, caching aur connection pooling use karte hain.”

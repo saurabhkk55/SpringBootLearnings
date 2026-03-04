@@ -130,7 +130,7 @@ Docker image **must be built from Dockerfile**
 
 ---
 
-## 7️⃣ One-Line Summary (Memorize This)
+## 7️⃣ streams.One-Line Summary (Memorize This)
 
 ```text
 Default name → Dockerfile

@@ -17,7 +17,7 @@ class s extends AbstractClass {
 class Main {
     static void main() {
         AbstractClass ac = new s();
-        ac.hi();
-        ac.show();
+        ac.hi(); // hi
+        ac.show(); // Hello
     }
 }

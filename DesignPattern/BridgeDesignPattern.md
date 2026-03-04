@@ -165,6 +165,6 @@ public class BridgePatternDemo {
 
 ---
 
-## 🧠 One-line yaad rakhne ka rule
+## 🧠 streams.One-line yaad rakhne ka rule
 
 > **"Inheritance ki jagah composition use karo, jab 2 dimensions ho"**

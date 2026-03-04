@@ -1,4 +1,4 @@
-package PriorityStream;
+package streams.PriorityStream;
 
 public class Priority implements Comparable<Priority> {
     String task;

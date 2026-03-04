@@ -307,7 +307,7 @@ Fallback
 
 ---
 
-## 13. One‑Line Summary
+## 13. streams.One‑Line Summary
 
 > **Resilience4j Circuit Breaker stops calls to failing dependencies to prevent cascading failures and stabilize the system.**
 
@@ -424,7 +424,7 @@ Agar threshold 50% hai → circuit **OPEN** ho jayega.
 
 ---
 
-### Which One to Use?
+### Which streams.One to Use?
 
 ✔️ Use **COUNT_BASED** when:
 

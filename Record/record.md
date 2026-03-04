@@ -280,7 +280,7 @@ Exception in thread "main" java.lang.IllegalArgumentException: Price must be pos
 
 ---
 
-## 🔟 Compact Canonical Constructor (Special One ⭐)
+## 🔟 Compact Canonical Constructor (Special streams.One ⭐)
 
 ### 📌 Theory
 
@@ -437,7 +437,7 @@ public String login(@RequestBody LoginRequest request) {
 
 ---
 
-## ⭐ Final One-Line Summary
+## ⭐ Final streams.One-Line Summary
 
 > Java Records are final, immutable, concise data carriers introduced in Java 16 that eliminate boilerplate code and are ideal for DTOs and value objects.
 

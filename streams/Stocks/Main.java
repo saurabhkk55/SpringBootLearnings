@@ -1,4 +1,4 @@
-package Stocks;
+package streams.Stocks;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -58,7 +58,7 @@ public class Main {
 
         Map<String, Integer> result = stockList.stream()
                 .collect(Collectors.groupingBy(
-                        Stocks.Stock::getStockName,
+                        streams.Stocks.Stock::getStockName,
                         Collectors.collectingAndThen(
                                 Collectors.toList(),
                                 list -> list.stream()

@@ -145,7 +145,7 @@ Map<Integer, String> map = new ConcurrentHashMap<>();
 
 ---
 
-## 8️⃣ Interview-Perfect One-Liner 💯
+## 8️⃣ Interview-Perfect streams.One-Liner 💯
 
 > **“Collections.synchronizedMap synchronizes individual operations, not compound actions like iteration, so external synchronization is required during iteration.”**
 

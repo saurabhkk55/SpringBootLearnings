@@ -154,7 +154,7 @@ private Long id;
 
 ---
 
-# 🧠 Interview One-Liner (Must Remember)
+# 🧠 Interview streams.One-Liner (Must Remember)
 
 > `@JsonProperty` controls JSON field naming and read/write access during serialization and deserialization.
 

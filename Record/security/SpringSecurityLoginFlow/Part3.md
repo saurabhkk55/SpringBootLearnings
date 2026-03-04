@@ -146,7 +146,7 @@ passwordEncoder.matches(raw, encoded);
 
 ---
 
-## 🧠 One-line mental model (yaad rakhne ke liye)
+## 🧠 streams.One-line mental model (yaad rakhne ke liye)
 
 > 🔹 **loadUserByUsername = sirf user laana**
 > 🔹 **PasswordEncoder = compare Spring karega**

@@ -84,7 +84,7 @@ extraFields = {
 
 ---
 
-# 🧠 Interview One-Liner
+# 🧠 Interview streams.One-Liner
 
 > `@JsonAnySetter` captures unknown JSON properties into a Map during deserialization, allowing flexible and forward-compatible parsing.
 

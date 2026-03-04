@@ -141,7 +141,7 @@ Because:
 
 ---
 
-## 6️⃣ Interview One-Liner Answers
+## 6️⃣ Interview streams.One-Liner Answers
 
 💬 **Q:** Is synchronizedMap same as ConcurrentHashMap?
 ✅ **A:** No. synchronizedMap uses single lock; ConcurrentHashMap uses fine-grained locking.

@@ -1,4 +1,4 @@
-package StudentStream2;
+package streams.StudentStream2;
 
 import java.util.Comparator;
 

@@ -477,7 +477,7 @@ public class GlobalExceptionHandler {
 
 ---
 
-## 🧠 Interview One-liner
+## 🧠 Interview streams.One-liner
 
 > **REST API? → `@RestControllerAdvice`
 > MVC App? → `@ControllerAdvice`**

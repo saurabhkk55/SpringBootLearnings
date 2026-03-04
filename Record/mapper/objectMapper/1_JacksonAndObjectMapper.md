@@ -133,6 +133,6 @@ ObjectMapper objectMapper() {
 > **Best Way in Spring Boot:**
 > ✅ **Jackson (Auto conversion via `@RequestBody` & `@ResponseBody`)**
 
-### Interview One-Liner 💡
+### Interview streams.One-Liner 💡
 
 > *Spring Boot uses Jackson internally to automatically serialize Java objects to JSON and deserialize JSON to Java objects using ObjectMapper.*

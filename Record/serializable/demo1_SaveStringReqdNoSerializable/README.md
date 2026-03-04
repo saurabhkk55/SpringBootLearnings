@@ -248,7 +248,7 @@ try (DataOutputStream dos = ...) { }
 
 ---
 
-## 🔚 Final One-Line Summary 🧠
+## 🔚 Final streams.One-Line Summary 🧠
 
 > **String sirf Java memory mein hoti hai,
 > file mein jaane se pehle `DataOutputStream` usko bytes mein convert karta hai,

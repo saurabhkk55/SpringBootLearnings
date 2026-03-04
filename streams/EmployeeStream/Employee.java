@@ -1,4 +1,4 @@
-package EmployeeStream;
+package streams.EmployeeStream;
 
 import java.util.List;
 

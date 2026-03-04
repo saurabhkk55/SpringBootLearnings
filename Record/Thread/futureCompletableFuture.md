@@ -179,7 +179,7 @@ System.out.println(combined.join());
 
 ---
 
-## 5️⃣ One-line Interview Answer 🔥
+## 5️⃣ streams.One-line Interview Answer 🔥
 
 > **Future mein exception sirf `get()` ke through handle hoti hai (blocking + wrapped).
 > CompletableFuture functional, non-blocking exception handling deta hai using `exceptionally`, `handle` & `whenComplete`.**

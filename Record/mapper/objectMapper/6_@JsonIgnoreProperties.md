@@ -65,7 +65,7 @@ public class User {
 
 ---
 
-# 🧠 Interview One-Liner
+# 🧠 Interview streams.One-Liner
 
 > `@JsonIgnoreProperties(ignoreUnknown = true)` makes deserialization resilient by ignoring unknown JSON fields instead of failing.
 
