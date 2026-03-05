@@ -36,23 +36,8 @@ public class Demo {
     }
 }
 
-//This is an expected behaviour because we are trying to save an Object of User class which does not implements Serializable interface
-// =========== OUTPUT
+//=========== OUTPUT
 //Writing Data
-//java.io.NotSerializableException: Record.serializable.demo2.User
-//at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1085)
-//at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:325)
-//at Record.serializable.demo2.Demo.saveData(Demo.java:22)
-//at Record.serializable.demo2.Demo.main(Demo.java:15)
-//java.io.WriteAbortedException: writing aborted; java.io.NotSerializableException: Record.serializable.demo2.User
-//at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1627)
-//at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:487)
-//at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:445)
-//at Record.serializable.demo2.Demo.loadData(Demo.java:31)
-//at Record.serializable.demo2.Demo.main(Demo.java:17)
-//Caused by: java.io.NotSerializableException: Record.serializable.demo2.User
-//at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1085)
-//at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:325)
-//at Record.serializable.demo2.Demo.saveData(Demo.java:22)
-//at Record.serializable.demo2.Demo.main(Demo.java:15)
+//Writing Data: User [id=101, name=Saurabh Kardam, password=P@$$word, platformName=YouTube]
 //Reading Data
+//Reading Data: User [id=101, name=Saurabh Kardam, password=P@$$word, platformName=YouTube]

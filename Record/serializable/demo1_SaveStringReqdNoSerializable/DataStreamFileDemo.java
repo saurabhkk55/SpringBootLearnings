@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class DataStreamFileDemo {
+public class  DataStreamFileDemo {
 
     private static final String DATA_FILE_NAME = "Record/serializable/demo1_SaveStringReqdNoSerializable/data.txt";
 
