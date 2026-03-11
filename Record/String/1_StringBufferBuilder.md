@@ -1,19 +1,24 @@
-In Java, **Java** has three common classes to work with strings:
+Here is a **more compact version** without losing important knowledge.
+
+---
+
+# Java String vs StringBuffer vs StringBuilder
+
+Java provides three classes for working with strings:
 
 * `String`
 * `StringBuffer`
 * `StringBuilder`
 
-The **main differences** are about **immutability** and **thread safety**.
+The main differences are **immutability** and **thread safety**.
 
 ---
 
 # 1️⃣ String
 
-`String` objects are **immutable**.
+`String` is **immutable**.
 
-👉 Immutable means **once a string object is created, its value cannot be changed**.
-
+➡ Once a `String` object is created, **its value cannot change**.
 If you modify it, **Java creates a new object**.
 
 ### Example
@@ -23,21 +28,21 @@ String s = "Hello";
 s = s + " World";
 ```
 
-What happens internally:
+Internal behavior:
 
-1. `"Hello"` object created.
-2. `"Hello World"` new object created.
-3. `s` now points to new object.
+1. `"Hello"` object created
+2. `"Hello World"` new object created
+3. `s` now points to the new object
 
-So many operations = **many objects created** → **memory waste**.
+Frequent modifications → **many objects created → more memory usage**.
 
-### When to use String
+### When to use
 
 Use `String` when:
 
-* The value **will not change frequently**
-* Simple **read operations**
-* **Constants** or fixed text
+* Value **does not change frequently**
+* Used as **constant or configuration**
+* Mostly **read operations**
 
 Example:
 
@@ -51,7 +56,7 @@ String name = "Saurabh";
 
 `StringBuffer` is **mutable**.
 
-👉 Mutable means **the object can be modified without creating new objects**.
+➡ The same object is modified instead of creating new objects.
 
 ### Example
 
@@ -60,65 +65,45 @@ StringBuffer sb = new StringBuffer("Hello");
 sb.append(" World");
 ```
 
-Memory behavior:
-
-Only **one object** is modified.
-
 Result:
 
 ```
 Hello World
 ```
 
-### Important Feature
+### Key Feature
 
 `StringBuffer` is **thread-safe**.
 
-It uses **synchronized methods**.
-
-So multiple threads can safely modify it.
-
-Example:
+Methods are **synchronized**:
 
 ```java
-sb.append("Java");
-```
-
-Internally:
-
-```
 public synchronized StringBuffer append(String str)
 ```
 
-But synchronization makes it **slower**.
+This allows **multiple threads** to safely modify it.
 
-### When to use StringBuffer
+But synchronization makes it **slower than StringBuilder**.
+
+### When to use
 
 Use when:
 
-* **Multiple threads modify the string**
-* Thread safety is required
+* **Multiple threads** modify the string
+* **Thread safety** is required
 
-Example:
+Examples:
 
-```
-Multithreaded logging
-Shared string modification
-```
+* Multithreaded logging
+* Shared string modification
 
 ---
 
 # 3️⃣ StringBuilder
 
-`StringBuilder` is also **mutable**, like `StringBuffer`.
+`StringBuilder` is also **mutable**, but **not thread-safe**.
 
-But:
-
-❗ **It is NOT thread-safe**
-
-It **does not use synchronization**.
-
-Because of this, it is **faster**.
+➡ No synchronization → **better performance**.
 
 ### Example
 
@@ -133,15 +118,15 @@ Output:
 Hello World
 ```
 
-### When to use StringBuilder
+### When to use
 
 Use when:
 
 * **Single-threaded environment**
-* String modification happens frequently
-* **High performance needed**
+* **Frequent string modifications**
+* **High performance required**
 
-Example:
+Examples:
 
 * Building large text
 * File processing
@@ -149,52 +134,50 @@ Example:
 
 ---
 
-# 🔑 Simple Comparison
+# 🔑 Comparison
 
-| Feature         | String                 | StringBuffer       | StringBuilder             |
-| --------------- | ---------------------- | ------------------ | ------------------------- |
-| Mutable         | ❌ No                   | ✅ Yes              | ✅ Yes                     |
-| Thread Safe     | ❌ No                   | ✅ Yes              | ❌ No                      |
-| Performance     | Slow (creates objects) | Medium             | Fast                      |
-| Synchronization | ❌                      | ✅                  | ❌                         |
-| Use Case        | Fixed text             | Multithreaded apps | Single thread performance |
+| Feature         | String              | StringBuffer       | StringBuilder                    |
+| --------------- | ------------------- | ------------------ | -------------------------------- |
+| Mutable         | ❌ No                | ✅ Yes              | ✅ Yes                            |
+| Thread Safe     | ❌ No                | ✅ Yes              | ❌ No                             |
+| Synchronization | ❌                   | ✅                  | ❌                                |
+| Performance     | Slow (many objects) | Medium             | Fast                             |
+| Use Case        | Fixed text          | Multithreaded apps | Single-threaded high performance |
 
 ---
 
-# 🎯 Real Life Example
+# 🎯 Performance Example
 
-Suppose you are **building a sentence in a loop**.
-
-❌ Bad approach
+❌ Inefficient
 
 ```java
 String s = "";
-for(int i=0;i<1000;i++){
+for(int i = 0; i < 1000; i++){
     s = s + i;
 }
 ```
 
-This creates **1000 objects**.
+Creates **1000+ objects**.
 
 ---
 
-✅ Better
+✅ Efficient
 
 ```java
 StringBuilder sb = new StringBuilder();
-for(int i=0;i<1000;i++){
+for(int i = 0; i < 1000; i++){
     sb.append(i);
 }
 ```
 
-Only **one object used** → much faster.
+Only **one object modified** → much faster.
 
 ---
 
-# ⭐ Easy Rule to Remember
+# ⭐ Easy Rule
 
 ```
-String        → Fixed text
-StringBuffer  → Multi-threaded modification
-StringBuilder → Single-threaded modification (BEST performance)
+String        → Immutable text
+StringBuffer  → Mutable + Thread-safe
+StringBuilder → Mutable + Fast (single-thread)
 ```
