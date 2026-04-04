@@ -131,5 +131,13 @@ public class StreamPractice {
                 .map(String::valueOf)
                 .collect(Collectors.groupingBy(str -> str, LinkedHashMap::new, Collectors.counting()));
         System.out.println(characterFreq);
+
+        List<String> input1 = List.of("abc", "aabb", "defg", "xyzx", "mnop");
+
+        System.out.print("23. Given a list of strings, find all the string that contains all unique characters: ");
+        List<String> list1 = input1.stream()
+                .filter(str -> str.chars().distinct().count() == str.length())
+                .toList();
+        System.out.println(list1);
     }
 }
