@@ -11,23 +11,16 @@ public class Main {
         List<Employee> empList = emp.getEmpList();
 
         // Group employees by location and join names
-        Map<String, String> groupEmployeesByLocationAndJoinNames = empList.stream()
+        Map<String, Object> groupEmployeesByLocationAndJoinNames = empList.stream()
                 .collect(Collectors.groupingBy(Employee::getLocation, Collectors.collectingAndThen(
                         Collectors.toList(),
-                        employeeList -> employeeList.stream()
-                                .map(Employee::getName)
-                                .collect(Collectors.joining(", "))
+                        employees -> employees.stream().map(Employee::getName).toList()
                 )));
         System.out.println(groupEmployeesByLocationAndJoinNames); // {Chennai=Jeya, Pune=Shubham, Kolkata=Gobinda, Saptarshi}
 
-        // Method 1: Convert employee list into Name → Mobile map
-        Map<String, List<String>> collect = empList.stream()
+        // Convert employee list into Name → Mobile map
+        Map<String, List<String>> empNameWithMobileNums = empList.stream()
                 .collect(Collectors.toMap(Employee::getName, Employee::getMobileNum));
-        System.out.println(collect); // {Jeya=[9748294522, 9748294523], Gobinda=[9748294524, 9748294525], Saptarshi=[9748294555, 9748294529], Shubham=[9748294526, 9748294527]}
-
-        // Method 2: Convert employee list into Name → Mobile map
-        Map<String, List<String>> collect1 = empList.stream()
-                .collect(Collectors.toMap(e -> e.getName(), e -> e.getMobileNum()));
-        System.out.println(collect1); // {Jeya=[9748294522, 9748294523], Gobinda=[9748294524, 9748294525], Saptarshi=[9748294555, 9748294529], Shubham=[9748294526, 9748294527]}
+        System.out.println(empNameWithMobileNums); // {Jeya=[9748294522, 9748294523], Gobinda=[9748294524, 9748294525], Saptarshi=[9748294555, 9748294529], Shubham=[9748294526, 9748294527]}
     }
 }
