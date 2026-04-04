@@ -16,9 +16,8 @@ public class StreamPractice {
 
         System.out.print("\n1. Largest: ");
         list.stream()
-                .max(Integer::compareTo)
-                .ifPresent(System.out::println);
-
+            .max(Integer::compareTo)
+            .ifPresent(System.out::println);
 
         System.out.print("3. Smallest: ");
         list.stream()
@@ -27,11 +26,11 @@ public class StreamPractice {
 
         System.out.print("4. Second largest: ");
         list.stream()
-                .distinct()
-                .sorted(Integer::compareTo)
-                .skip(1)
-                .limit(1)
-                .forEach(System.out::println);
+            .distinct()
+            .sorted((num1, num2) -> num2 - num1)
+            .skip(1)
+            .limit(1)
+            .forEach(System.out::println);
 
         System.out.print("5. Third smallest: ");
         list.stream()
@@ -41,29 +40,29 @@ public class StreamPractice {
                 .limit(1)
                 .forEach(System.out::println);
 
-        System.out.print("6. No. of even numbers: ");
+        System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
-                .filter(n -> n % 2 == 0)
+                .filter(num -> num % 2 == 0)
                 .count();
         System.out.println(evenNumCount);
 
         System.out.print("8. Even numbers saving/storing in a variable: ");
         List<Integer> evenNumList = list.stream()
-                .filter(n -> n % 2 == 0)
+                .filter(num -> num % 2 == 0)
                 .toList();
         System.out.println(evenNumList);
 
         System.out.print("9. Even numbers in ascending order: ");
         List<Integer> ascSortedEvenNumList = list.stream()
-                .filter(n -> n % 2 == 0)
+                .filter(num -> num % 2 == 0)
                 .sorted(Integer::compareTo)
                 .toList();
         System.out.println(ascSortedEvenNumList);
 
         System.out.print("10. Even numbers in descending order: ");
         List<Integer> descSortedEvenNumList = list.stream()
-                .filter(n -> n % 2 == 0)
-                .sorted((a, b) -> b - a)
+                .filter(num -> num % 2 == 0)
+                .sorted((num1, num2) -> num2 - num1)
                 .toList();
         System.out.println(descSortedEvenNumList);
 
@@ -71,8 +70,8 @@ public class StreamPractice {
 
         System.out.print("14. Find longest string by length: ");
         words.stream()
-                .max((s1, s2) -> s1.length() - s2.length())
-                .ifPresent(System.out::println);
+            .max((str1, str2) -> str1.length() - str2.length())
+            .ifPresent(System.out::println);
 
         System.out.print("15. Find longest string lexicographically: ");
         words.stream()
@@ -81,13 +80,13 @@ public class StreamPractice {
 
         System.out.println("16. Group Elements by Even and Odd");
         Map<Boolean, List<Integer>> groupedByEvenOdd = list.stream()
-                .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+                .collect(Collectors.partitioningBy(num -> num % 2 == 0));
         System.out.println("\tEven numbers: " + groupedByEvenOdd.get(true));
         System.out.println("\tOdd numbers: " + groupedByEvenOdd.get(false));
 
         System.out.print("17. Concatenate Strings with a Delimiter: ");
         String concatenatedString = words.stream()
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
         System.out.println(concatenatedString);
 
         String input = "hello world";
@@ -110,9 +109,9 @@ public class StreamPractice {
         input.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
-                .collect(Collectors.groupingBy(s -> s, LinkedHashMap::new, Collectors.counting()))
+                .collect(Collectors.groupingBy(str -> str, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(item -> item.getValue() == 1)
+                .filter(entry -> entry.getValue() == 1)
                 .limit(1)
                 .map(Map.Entry::getKey)
                 .forEach(System.out::println);
@@ -121,7 +120,7 @@ public class StreamPractice {
 
         System.out.print("21. Create a Map of Word Frequencies: ");
         Map<String, Long> wordFreq = fruits.stream()
-                .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+                .collect(Collectors.groupingBy(fruit -> fruit, Collectors.counting()));
         System.out.println(wordFreq);
 
         String str1 = "hello how are you doing";
@@ -130,7 +129,7 @@ public class StreamPractice {
         LinkedHashMap<String, Long> characterFreq = str1.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
-                .collect(Collectors.groupingBy(s -> s, LinkedHashMap::new, Collectors.counting()));
+                .collect(Collectors.groupingBy(str -> str, LinkedHashMap::new, Collectors.counting()));
         System.out.println(characterFreq);
     }
 }
