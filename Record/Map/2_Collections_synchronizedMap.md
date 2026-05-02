@@ -1,23 +1,3 @@
-Good catch, Saurabh 👍
-This is a **very common confusion in interviews**.
-
-Let’s clear it **cleanly and practically**.
-
----
-
-# 🔐 “Synchronized ConcurrentHashMap” – What does it actually mean?
-
-👉 **There is NO class called `SynchronizedConcurrentHashMap`** in Java.
-
-What people usually mean is **one of these two things**:
-
-1. `Collections.synchronizedMap(new HashMap<>())`
-2. `ConcurrentHashMap`
-
-They sound similar, but **they work VERY differently**.
-
----
-
 ## 1️⃣ `Collections.synchronizedMap(...)`
 
 ### ✔ What it does

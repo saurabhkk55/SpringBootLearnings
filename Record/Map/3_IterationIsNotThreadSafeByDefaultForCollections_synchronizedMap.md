@@ -1,15 +1,7 @@
-Excellent question, Saurabh 👌
-This shows you’re thinking **beyond definitions** and into **actual behavior**—exactly what interviewers look for.
-
-Let’s break this **slowly, logically, and with a clear “why”**.
-
----
-
 ## 1️⃣ What `Collections.synchronizedMap()` actually synchronizes
 
 ```java
-Map<K, V> map =
-    Collections.synchronizedMap(new HashMap<>());
+Map<K, V> map = Collections.synchronizedMap(new HashMap<>());
 ```
 
 👉 This **synchronizes individual method calls** like:
@@ -59,8 +51,7 @@ While **Thread-A** is iterating:
 ### Example
 
 ```java
-Map<Integer, String> map =
-    Collections.synchronizedMap(new HashMap<>());
+Map<Integer, String> map = Collections.synchronizedMap(new HashMap<>());
 
 map.put(1, "A");
 map.put(2, "B");

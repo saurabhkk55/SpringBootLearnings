@@ -70,7 +70,7 @@ If:
 The client may see:
 
 * Connection refused
-* 503 error
+* 503 error (503 Service Unavailable)
 * Timeout
 
 ---
