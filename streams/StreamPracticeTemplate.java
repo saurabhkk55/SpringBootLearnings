@@ -1,7 +1,7 @@
 package streams;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StreamPracticeTemplate {
     static void main() {
@@ -86,5 +86,17 @@ public class StreamPracticeTemplate {
         System.out.print("23. Given a list of strings, find all the string that contains all unique characters: ");
 
 //        System.out.println(list1);
+
+        List<Integer> ls = Arrays.asList(1,3,2,5,8,8,2,2,5,4,7);
+
+        System.out.println("24. Find duplicates: ");
+
+//        System.out.println(duplicates); // [8, 2, 5]
+
+        List<Object> objectList = Arrays.asList(1, -9, null, "", " ", "     ");
+
+        System.out.println("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
+
+//        System.out.println(result);
     }
 }

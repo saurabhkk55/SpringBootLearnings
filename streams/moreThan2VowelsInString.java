@@ -12,16 +12,14 @@ public class moreThan2VowelsInString {
         List<String> validVowels = Arrays.stream(names)
                 .filter(name -> {
 
+                    String[] nameSplit = name.split("");
                     String vowels = "aeiouAEIOU";
 
-                    List<String> vowelsInName = name.chars()
-                            .mapToObj(c -> (char) c)
-                            .map(String::valueOf)
+                    long vowelsFreq = Arrays.stream(nameSplit)
                             .filter(vowels::contains)
-                            .toList();
+                            .count();
 
-                    if (vowelsInName.size() > 2) return true;
-                    return false;
+                    return vowelsFreq > 2;
                 })
                 .toList();
 

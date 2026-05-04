@@ -8,10 +8,18 @@ public class FindDuplicate {
 
         Set<Integer> hs = new HashSet<>();
 
-        List<Integer> duplicates = ls.stream()
-                .filter(num -> !hs.add(num))
-                .distinct()
-                .toList();
+        Set<Integer> duplicates = ls.stream()
+                .filter(n -> !hs.add(n))
+                .collect(Collectors.toSet());
         System.out.println(duplicates); // [8, 2, 5]
+
+        List<Object> objectList = Arrays.asList(1, -9, null, "", " ", "     ");
+
+        List<Object> result = objectList.stream()
+                .filter(Objects::nonNull) // remove null
+                .filter(e -> !(e instanceof String) || !((String) e).isBlank())
+                .collect(Collectors.toList());
+
+        System.out.println(result);
     }
 }

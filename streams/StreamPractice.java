@@ -18,24 +18,24 @@ public class StreamPractice {
 
         System.out.print("3. Smallest: ");
         list.stream()
-                        .min(Integer::compareTo)
-                                .ifPresent(System.out::println);
+                .min(Integer::compareTo)
+                .ifPresent(System.out::println);
 
         System.out.print("4. Second largest: ");
         list.stream()
-            .distinct()
-            .sorted(Collections.reverseOrder())
-            .skip(1)
-            .limit(1)
-            .forEach(System.out::println);
+                .distinct()
+                .sorted(Integer::compareTo)
+                .skip(1)
+                .limit(1)
+                .forEach(System.out::println);
 
         System.out.print("5. Third smallest: ");
         list.stream()
-            .distinct()
-            .sorted(Integer::compareTo)
-            .skip(2)
-            .limit(1)
-            .forEach(System.out::println);
+                .distinct()
+                .sorted(Integer::compareTo)
+                .skip(2)
+                .limit(1)
+                .forEach(System.out::println);
 
         System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
@@ -67,17 +67,17 @@ public class StreamPractice {
 
         System.out.print("14. Find longest string by length: ");
         words.stream()
-            .max((s1, s2) -> s1.length() - s2.length())
-            .ifPresent(System.out::println);
+                        .max((s1, s2) -> s1.length() - s2.length())
+                                .ifPresent(System.out::println);
 
         System.out.print("15. Find longest string lexicographically: ");
         words.stream()
-            .max(String::compareTo)
-            .ifPresent(System.out::println);
+                .max(String::compareTo)
+                .ifPresent(System.out::println);
 
         System.out.println("16. Group Elements by Even and Odd");
-        Map<Boolean, List<Integer>> groupedByEvenOdd = list.stream()
-                .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+        Map<Boolean, Long> groupedByEvenOdd = list.stream()
+                .collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.counting()));
         System.out.println("\tEven numbers: " + groupedByEvenOdd.get(true));
         System.out.println("\tOdd numbers: " + groupedByEvenOdd.get(false));
 
@@ -104,6 +104,7 @@ public class StreamPractice {
 
         System.out.print("20. Find the First Non-Repeating Character in a String: ");
         input.chars()
+                .distinct()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
@@ -123,6 +124,7 @@ public class StreamPractice {
 
         System.out.print("22. Count frequency of character in a string and also maintain the insertion order: ");
         LinkedHashMap<Character, Long> characterFreq = str1.chars()
+                .distinct()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()));
         System.out.println(characterFreq);
@@ -130,9 +132,9 @@ public class StreamPractice {
         List<String> input1 = List.of("abc", "aabb", "defg", "xyzx", "mnop");
 
         System.out.print("23. Given a list of strings, find all the string that contains all unique characters: ");
-        input1.stream()
+        List<String> list1 = input1.stream()
                 .filter(str -> str.length() == str.chars().distinct().count())
-                .toList()
+                .toList();
         System.out.println(list1);
     }
 }
