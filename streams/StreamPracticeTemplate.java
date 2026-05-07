@@ -89,7 +89,7 @@ public class StreamPracticeTemplate {
 
         List<Integer> ls = Arrays.asList(1,3,2,5,8,8,2,2,5,4,7);
 
-        System.out.println("24. Find duplicates: ");
+        System.out.print("24. Find duplicates: ");
 
 //        System.out.println(duplicates); // [8, 2, 5]
 

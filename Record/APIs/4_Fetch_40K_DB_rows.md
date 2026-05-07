@@ -12,7 +12,7 @@ Agar humein database se **40,000 rows fetch karni ho**, toh direct ek hi query s
 * Slow response time
 * Heavy network payload
 * Application crash possibility
-
+f
 ---
 
 ## ✅ 2. Best Approaches

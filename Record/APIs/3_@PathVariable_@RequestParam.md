@@ -144,8 +144,8 @@ public String getUserOrders(
 # 💡 Real-Life Example
 
 ```id="zptk7h"
-GET /products/10           → specific product
-GET /products?category=mobile&sort=price → filter
+GET /products/10                            → specific product
+GET /products?category=mobile&sort=price    → filter
 ```
 
 ---
@@ -154,5 +154,3 @@ If you want, I can also show:
 - ✅ POST API with @RequestBody
 - ✅ Validation (@Valid)
 - ✅ Real microservice controller design
-
-Just tell me 👍
