@@ -9,20 +9,19 @@ public class moreThan2VowelsInString {
         // Find all the Strings that contain more than 2 vowels
         String[] names = {"ritu", "saurabh", "ram", "prerna", "vivek", "Saurabh Kumar"};
 
-        List<String> validVowels = Arrays.stream(names)
+        List<String> validVowelList = Arrays.stream(names)
                 .filter(name -> {
+                    String validVowels = "aeiouAEIOU";
+                    String[] nameArr = name.split("");
 
-                    String[] nameSplit = name.split("");
-                    String vowels = "aeiouAEIOU";
-
-                    long vowelsFreq = Arrays.stream(nameSplit)
-                            .filter(vowels::contains)
+                    long vowelsCount = Arrays.stream(nameArr)
+                            .filter(validVowels::contains)
                             .count();
 
-                    return vowelsFreq > 2;
+                    return vowelsCount > 2;
                 })
                 .toList();
 
-        System.out.println(validVowels);
+        System.out.println(validVowelList); // [saurabh, Saurabh Kumar]
     }
 }

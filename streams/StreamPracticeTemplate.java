@@ -95,8 +95,13 @@ public class StreamPracticeTemplate {
 
         List<Object> objectList = Arrays.asList(1, -9, null, "", " ", "     ");
 
-        System.out.println("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
+        System.out.print("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
 
 //        System.out.println(result);
+
+        List<Object> emails = Arrays.asList(88, "yoyo", "saurabh@gmail.com", "joy.com", "Roy12@yahoo.com", "", " ", "   ", null);
+        System.out.print("26. Valid emails: ");
+
+//        System.out.println(result2);
     }
 }

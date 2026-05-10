@@ -31,11 +31,11 @@ public class StreamPractice {
 
         System.out.print("5. Third smallest: ");
         list.stream()
-            .distinct()
-            .sorted(Integer::compareTo)
-            .skip(2)
-            .limit(1)
-            .forEach(System.out::println);
+                .distinct()
+                .sorted()
+                .skip(2)
+                .limit(1)
+                .forEach(System.out::println);
 
         System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
@@ -52,7 +52,7 @@ public class StreamPractice {
         System.out.print("9. Even numbers in ascending order: ");
         List<Integer> ascSortedEvenNumList = list.stream()
                 .filter(n -> n % 2 == 0)
-                .sorted(Integer::compareTo)
+                .sorted()
                 .toList();
         System.out.println(ascSortedEvenNumList);
 
@@ -104,11 +104,12 @@ public class StreamPractice {
 
         System.out.print("20. Find the First Non-Repeating Character in a String: ");
         input.chars()
+                .distinct()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
-                .collect(Collectors.groupingBy(item -> item, LinkedHashMap::new, Collectors.counting()))
+                .collect(Collectors.groupingBy(s -> s, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(entry -> entry.getValue() == 1)
+                .filter(kv -> kv.getValue() == 1)
                 .limit(1)
                 .map(Map.Entry::getKey)
                 .forEach(System.out::println);
@@ -116,8 +117,8 @@ public class StreamPractice {
         List<String> fruits = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
 
         System.out.print("21. Create a Map of Word Frequencies: ");
-        Map<String, Long> wordFreq = words.stream()
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+        Map<String, Long> wordFreq = fruits.stream()
+                .collect(Collectors.groupingBy(fruit -> fruit, Collectors.counting()));
         System.out.println(wordFreq);
 
         String str1 = "hello how are you doing";
@@ -133,27 +134,37 @@ public class StreamPractice {
 
         System.out.print("23. Given a list of strings, find all the string that contains all unique characters: ");
         List<String> list1 = input1.stream()
-                .filter(s -> s.length() == s.chars().distinct().count())
+                .filter(str -> str.length() == str.chars().distinct().count())
                 .toList();
         System.out.println(list1);
 
         List<Integer> ls = Arrays.asList(1,3,2,5,8,8,2,2,5,4,7);
 
         System.out.print("24. Find duplicates: ");
-        HashSet<Integer> hs = new HashSet<>();
-
+        Set<Integer> hs = new HashSet<>();
         Set<Integer> duplicates = ls.stream()
-                .filter(item -> !hs.add(item))
+                .filter(n -> !hs.add(n))
                 .collect(Collectors.toSet());
         System.out.println(duplicates); // [8, 2, 5]
 
-        List<Object> objectList = Arrays.asList(1, -9, null, "", " ", "     ", "skk");
+        List<Object> objectList = Arrays.asList(1, -9, null, "", " ", "     ");
 
-        System.out.println("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
-        objectList.stream()
+        System.out.print("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
+        List<Object> result = objectList.stream()
                 .filter(Objects::nonNull)
-                .filter(item -> !(item instanceof String) || !((String) item).isBlank())
-                .toList()
+                .filter(obj -> !(obj instanceof String) || !((String) obj).isBlank())
+                .toList();
         System.out.println(result);
+
+        List<Object> emails = Arrays.asList(88, "yoyo", "saurabh@gmail.com", "joy.com", "Roy12@yahoo.com", "", " ", "   ", null);
+        System.out.print("26. Valid emails: ");
+        String validEmailDomain = "yahoo gmail";
+        List<String> result2 = emails.stream()
+                .filter(Objects::nonNull)
+                .filter(obj -> (obj instanceof String) && !((String) obj).isBlank())
+                .map(String::valueOf)
+                .filter(str -> str.contains("@") && str.contains(".com") && (str.contains("gmail") || str.contains("yahoo")))
+                .toList();
+        System.out.println(result2);
     }
 }

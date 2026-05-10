@@ -21,5 +21,16 @@ public class FindDuplicate {
                 .collect(Collectors.toList());
 
         System.out.println(result);
+
+        List<Object> emails = Arrays.asList(88, "yoyo", "saurabh@gmail.com", "joy.com", "Roy12@yahoo.com", "", " ", "   ", null);
+        System.out.print("26. Valid emails: ");
+
+        List<String> result2 = emails.stream()
+                .filter(Objects::nonNull)
+                .filter(obj -> (obj instanceof String) && !((String) obj).isBlank())
+                .map(String::valueOf)
+                .filter(str -> str.contains("@") && str.contains(".com") && (str.contains("gmail") || str.contains("yahoo")))
+                .toList();
+        System.out.println(result2);
     }
 }
