@@ -103,5 +103,11 @@ public class StreamPracticeTemplate {
         System.out.print("26. Valid emails: ");
 
 //        System.out.println(result2);
+
+        System.out.print("27. Count frequency & sort by frequency of character in a string and also maintain the insertion order: ");
+        // Sort the map based on frequency (value) using sorted() and then collect into a LinkedHashMap to maintain insertion order.
+        // String str1 = "hello how are you doing";
+
+//        System.out.println(sortedMap);
     }
 }
