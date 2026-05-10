@@ -8,6 +8,11 @@ public class StreamPracticeTemplate {
 
         List<Integer> list = Arrays.asList(2, 0, 9, 8, 11, -9, 0, 8, 11);
 
+        OptionalInt min = list.stream()
+                .mapToInt(n -> n)
+                .min(); // min(), max(), average(), etc
+        System.out.println(min.getAsInt());
+
         System.out.print("Given list: ");
         list.forEach(item -> System.out.print(item + " "));
 
