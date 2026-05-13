@@ -85,8 +85,7 @@ Mark one repository as default/preferred.
 ```java id="’wini0a"
 @Repository
 @Primary
-public interface UserRepository
-        extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }
 ```
 
