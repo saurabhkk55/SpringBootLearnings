@@ -22,8 +22,8 @@ public class FindDuplicate {
 
         System.out.println(result);
 
-        List<Object> emails = Arrays.asList(88, "yoyo", "saurabh@gmail.com", "joy.com", "Roy12@yahoo.com", "", " ", "   ", null);
         System.out.print("26. Valid emails: ");
+        List<Object> emails = Arrays.asList(88, "yoyo", "saurabh@gmail.com", "joy.com", "Roy12@yahoo.com", "", " ", "   ", null);
 
         List<String> result2 = emails.stream()
                 .filter(Objects::nonNull)
@@ -32,5 +32,23 @@ public class FindDuplicate {
                 .filter(str -> str.contains("@") && str.contains(".com") && (str.contains("gmail") || str.contains("yahoo")))
                 .toList();
         System.out.println(result2);
+
+        System.out.print("27. Count frequency & sort by frequency of character in a string and also maintain the insertion order: ");
+        // Sort the map based on frequency (value) using sorted() and then collect into a LinkedHashMap to maintain insertion order.
+        String str1 = "hello how are you doing";
+        LinkedHashMap<String, Long> sortedMap = str1.chars()
+                .mapToObj(c -> (char) c)
+                .map(String::valueOf)
+                .collect(Collectors.groupingBy(s -> s, Collectors.counting()))
+                .entrySet().stream()
+//                .sorted(Map.Entry.comparingByValue())   // ascending order
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed()) // descending order
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new
+                ));
+
+        System.out.println(sortedMap);
     }
 }

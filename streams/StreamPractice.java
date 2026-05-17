@@ -10,7 +10,7 @@ public class StreamPractice {
 
         OptionalInt min = list.stream()
                 .mapToInt(n -> n)
-                .min();
+                .min(); // min(), max(), average(), etc
         System.out.println(min.getAsInt());
 
         System.out.print("Given list: ");
@@ -18,29 +18,30 @@ public class StreamPractice {
 
         System.out.print("\n1. Largest: ");
         list.stream()
-            .max(Integer::compareTo)
-            .ifPresent(System.out::println);
+                .max(Integer::compareTo)
+                .ifPresent(System.out::println);
 
         System.out.print("3. Smallest: ");
         list.stream()
-            .min(Integer::compareTo)
-            .ifPresent(System.out::println);
+                .min(Integer::compareTo)
+                .ifPresent(System.out::println);
 
         System.out.print("4. Second largest: ");
         list.stream()
             .distinct()
             .sorted(Collections.reverseOrder())
             .skip(1)
-            .limit(1)
-            .forEach(System.out::println);
+            .findFirst()
+            .ifPresent(System.out::println);
 
         System.out.print("5. Third smallest: ");
         list.stream()
                 .distinct()
                 .sorted()
                 .skip(2)
-                .limit(1)
-                .forEach(System.out::println);
+                .findFirst()
+                .ifPresent(System.out::println);
+
 
         System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
@@ -111,13 +112,12 @@ public class StreamPractice {
         input.chars()
                 .distinct()
                 .mapToObj(c -> (char) c)
-                .map(String::valueOf)
-                .collect(Collectors.groupingBy(s -> s, LinkedHashMap::new, Collectors.counting()))
+                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
                 .filter(kv -> kv.getValue() == 1)
-                .limit(1)
                 .map(Map.Entry::getKey)
-                .forEach(System.out::println);
+                .findFirst()
+                .ifPresent(System.out::println);
 
         List<String> fruits = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
 
@@ -129,10 +129,9 @@ public class StreamPractice {
         String str1 = "hello how are you doing";
 
         System.out.print("22. Count frequency of character in a string and also maintain the insertion order: ");
-        LinkedHashMap<String, Long> characterFreq = str1.chars()
+        LinkedHashMap<Character, Long> characterFreq = str1.chars()
                 .mapToObj(c -> (char) c)
-                .map(String::valueOf)
-                .collect(Collectors.groupingBy(s -> s, LinkedHashMap::new, Collectors.counting()));
+                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()));
         System.out.println(characterFreq);
 
         List<String> input1 = List.of("abc", "aabb", "defg", "xyzx", "mnop");
@@ -147,8 +146,9 @@ public class StreamPractice {
 
         System.out.print("24. Find duplicates: ");
         Set<Integer> hs = new HashSet<>();
+
         Set<Integer> duplicates = ls.stream()
-                .filter(n -> !hs.add(n))
+                .filter(elem -> !hs.add(elem))
                 .collect(Collectors.toSet());
         System.out.println(duplicates); // [8, 2, 5]
 
@@ -157,23 +157,23 @@ public class StreamPractice {
         System.out.print("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
         List<Object> result = objectList.stream()
                 .filter(Objects::nonNull)
-                .filter(obj -> !(obj instanceof String) || !((String) obj).isBlank())
+                .filter(str -> !(str instanceof String) || !((String) str).isBlank())
                 .toList();
         System.out.println(result);
 
         List<Object> emails = Arrays.asList(88, "yoyo", "saurabh@gmail.com", "joy.com", "Roy12@yahoo.com", "", " ", "   ", null);
         System.out.print("26. Valid emails: ");
-        String validEmailDomain = "yahoo gmail";
         List<String> result2 = emails.stream()
                 .filter(Objects::nonNull)
-                .filter(obj -> (obj instanceof String) && !((String) obj).isBlank())
+                .filter(str -> str instanceof String && !((String) str).isBlank())
                 .map(String::valueOf)
-                .filter(str -> str.contains("@") && str.contains(".com") && (str.contains("gmail") || str.contains("yahoo")))
+                .filter(str -> str.contains("@gmail.com") || str.contains("@yahoo.com"))
                 .toList();
         System.out.println(result2);
 
         System.out.print("27. Count frequency & sort by frequency of character in a string and also maintain the insertion order: ");
         // Sort the map based on frequency (value) using sorted() and then collect into a LinkedHashMap to maintain insertion order.
+        // String str1 = "hello how are you doing";
         LinkedHashMap<String, Long> sortedMap = str1.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
