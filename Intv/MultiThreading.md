@@ -444,7 +444,7 @@ There are multiple types of executers:
 
 1. Fixed Thread Executor
 
-    Here we define how many threads should work. For example, if we create executor like: `ExecutorService es = Executors.newFixed ThreadPool(4);`
+    Here we define how many threads should work. For example, if we create executor like: `ExecutorService es = Executors.newFixedThreadPool(4);`
     
     - Here we have fixed that 4 threads will be in use.
     - It means at most 4 threads can run in parallel.
@@ -454,7 +454,7 @@ There are multiple types of executers:
 
 2) Single Thread Executor
 
-    Here we define that only one thread should work. For example, if we create executor like: `ExecutorService es = Executors.new Single ThreadExecutor();`
+    Here we define that only one thread should work. For example, if we create executor like: `ExecutorService es = Executors.newSingleThreadExecutor();`
     
    - Here only one thread will be created.
    - It means only one task can run at a time.
@@ -464,7 +464,7 @@ There are multiple types of executers:
 
 3) Cached Thread Executor
 
-    Here we do not define any fixed number of threads. For example, if we create executor like: `ExecutorService es = Executors.new CachedThreadPool();`
+    Here we do not define any fixed number of threads. For example, if we create executor like: `ExecutorService es = Executors.newCachedThreadPool();`
 
     In this executor:
      - New threads are created when needed
@@ -477,7 +477,7 @@ There are multiple types of executers:
 
 4) Scheduled Thread Executor
 
-    This executor is used when we want to run tasks after a delay or repeatedly. For example, if we create executor like: `ScheduledExecutorService es = Executors.new Scheduled ThreadPool(2);`
+    This executor is used when we want to run tasks after a delay or repeatedly. For example, if we create executor like: `ScheduledExecutorService es = Executors.newScheduledThreadPool(2);`
 
     Here 2 threads are available for scheduled tasks. We can:
      - Run a task after some delay

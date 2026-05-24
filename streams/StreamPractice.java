@@ -18,30 +18,29 @@ public class StreamPractice {
 
         System.out.print("\n1. Largest: ");
         list.stream()
-                .max(Integer::compareTo)
-                .ifPresent(System.out::println);
+                        .max(Integer::compareTo)
+                                .ifPresent(System.out::println);
 
         System.out.print("3. Smallest: ");
         list.stream()
-                .min(Integer::compareTo)
-                .ifPresent(System.out::println);
+                        .min(Integer::compareTo)
+                                .ifPresent(System.out::println);
 
         System.out.print("4. Second largest: ");
-        list.stream()
-            .distinct()
-            .sorted(Collections.reverseOrder())
-            .skip(1)
-            .findFirst()
-            .ifPresent(System.out::println);
+        Optional<Integer> secondLargest = list.stream()
+                .distinct()
+                .sorted(Collections.reverseOrder())
+                .skip(1)
+                .findFirst();
+        System.out.println(secondLargest.get());
 
         System.out.print("5. Third smallest: ");
-        list.stream()
+        Optional<Integer> thirdSmallest = list.stream()
                 .distinct()
-                .sorted()
+                .sorted(Integer::compareTo)
                 .skip(2)
-                .findFirst()
-                .ifPresent(System.out::println);
-
+                .findFirst();
+        System.out.println(thirdSmallest.get());
 
         System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
@@ -58,7 +57,7 @@ public class StreamPractice {
         System.out.print("9. Even numbers in ascending order: ");
         List<Integer> ascSortedEvenNumList = list.stream()
                 .filter(n -> n % 2 == 0)
-                .sorted()
+                .sorted(Integer::compareTo)
                 .toList();
         System.out.println(ascSortedEvenNumList);
 
@@ -73,13 +72,13 @@ public class StreamPractice {
 
         System.out.print("14. Find longest string by length: ");
         words.stream()
-            .max((s1, s2) -> s1.length() - s2.length())
-            .ifPresent(System.out::println);
+                        .max((s1, s2) -> s1.length() - s2.length())
+                                .ifPresent(System.out::println);
 
         System.out.print("15. Find longest string lexicographically: ");
         words.stream()
-            .max(String::compareTo)
-            .ifPresent(System.out::println);
+                .max(String::compareTo)
+                .ifPresent(System.out::println);
 
         System.out.println("16. Group Elements by Even and Odd");
         Map<Boolean, List<Integer>> groupedByEvenOdd = list.stream()
@@ -110,13 +109,13 @@ public class StreamPractice {
 
         System.out.print("20. Find the First Non-Repeating Character in a String: ");
         input.chars()
-                .distinct()
                 .mapToObj(c -> (char) c)
-                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()))
+                .map(String::valueOf)
+                .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
                 .filter(kv -> kv.getValue() == 1)
-                .map(Map.Entry::getKey)
                 .findFirst()
+                .map(Map.Entry::getKey)
                 .ifPresent(System.out::println);
 
         List<String> fruits = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
@@ -131,7 +130,7 @@ public class StreamPractice {
         System.out.print("22. Count frequency of character in a string and also maintain the insertion order: ");
         LinkedHashMap<Character, Long> characterFreq = str1.chars()
                 .mapToObj(c -> (char) c)
-                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()));
+                .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()));
         System.out.println(characterFreq);
 
         List<String> input1 = List.of("abc", "aabb", "defg", "xyzx", "mnop");
@@ -145,10 +144,9 @@ public class StreamPractice {
         List<Integer> ls = Arrays.asList(1,3,2,5,8,8,2,2,5,4,7);
 
         System.out.print("24. Find duplicates: ");
-        Set<Integer> hs = new HashSet<>();
-
+        Set<Integer> set = new HashSet<>();
         Set<Integer> duplicates = ls.stream()
-                .filter(elem -> !hs.add(elem))
+                .filter(n -> !set.add(n))
                 .collect(Collectors.toSet());
         System.out.println(duplicates); // [8, 2, 5]
 
@@ -157,7 +155,7 @@ public class StreamPractice {
         System.out.print("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
         List<Object> result = objectList.stream()
                 .filter(Objects::nonNull)
-                .filter(str -> !(str instanceof String) || !((String) str).isBlank())
+                .filter(item -> !(item instanceof String) || !((String) item).isBlank())
                 .toList();
         System.out.println(result);
 
@@ -165,7 +163,7 @@ public class StreamPractice {
         System.out.print("26. Valid emails: ");
         List<String> result2 = emails.stream()
                 .filter(Objects::nonNull)
-                .filter(str -> str instanceof String && !((String) str).isBlank())
+                .filter(item -> (item instanceof String) && !(((String) item).isBlank()))
                 .map(String::valueOf)
                 .filter(str -> str.contains("@gmail.com") || str.contains("@yahoo.com"))
                 .toList();
@@ -174,6 +172,7 @@ public class StreamPractice {
         System.out.print("27. Count frequency & sort by frequency of character in a string and also maintain the insertion order: ");
         // Sort the map based on frequency (value) using sorted() and then collect into a LinkedHashMap to maintain insertion order.
         // String str1 = "hello how are you doing";
+
         LinkedHashMap<String, Long> sortedMap = str1.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
