@@ -11,11 +11,19 @@ one-to-many mapping mein always many side contains foriegn key and one who conta
 
 ---------------------------------
 
-`@one-to-one(mappedBy = "address", fetch = FetchType.LAZY)` // address is the reference we used in Student class
+In Address class:
+```java
+@one-to-one(mappedBy = "address", fetch = FetchType.LAZY) // address is the reference we used in Student class
+```
+
 mappedBy says dont create foriegn key in Address table because Student class (table) is having foriegn key through:
+
+In Student class:
+```java
 @OneToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "address_id")
 private Address address; // here address is the reference
+```
 
 Agar owner side se inverse side ka data lana hai toh proxy object banega first inverse side iss proxy object mein only foreign key ki value hogi and baaki sab field inverse side ki null hogi.
 
