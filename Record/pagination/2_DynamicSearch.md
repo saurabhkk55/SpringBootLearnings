@@ -102,6 +102,7 @@ public class UserSpecification {
                 predicates.add(criteriaBuilder.equal(root.get("mobile"), request.getMobile()));
             }
 
+            // criteriaBuilder.and() expects an array of Predicate objects, not a List.
             return criteriaBuilder.and(predicates.toArray(new Predicate[0])); // AND Operator (we can OR as well)
         };
     }

@@ -37,7 +37,7 @@ What kind of operations are not suitable for Parallel Streams?
 
 Parallel Streams internally use which thread pool? Can it affect other tasks?
 
-- Parallel streams internally use the Fork Join `Pool.commonPool()`. 
+- Parallel streams internally use the `ForkJoinPool.commonPool()`. 
 - Since this pool is shared across the application, heavy parallel stream tasks can occupy the threads and affect other tasks that also depend on the same pool.
 
 ---

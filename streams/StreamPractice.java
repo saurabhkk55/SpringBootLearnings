@@ -1,6 +1,7 @@
 package streams;
 
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class StreamPractice {
@@ -18,29 +19,29 @@ public class StreamPractice {
 
         System.out.print("\n1. Largest: ");
         list.stream()
-                        .max(Integer::compareTo)
-                                .ifPresent(System.out::println);
+            .max(Integer::compareTo)
+            .ifPresent(System.out::println);
 
         System.out.print("3. Smallest: ");
         list.stream()
-                        .min(Integer::compareTo)
-                                .ifPresent(System.out::println);
+                .min(Integer::compareTo)
+                .ifPresent(System.out::println);
 
         System.out.print("4. Second largest: ");
-        Optional<Integer> secondLargest = list.stream()
+        list.stream()
                 .distinct()
                 .sorted(Collections.reverseOrder())
                 .skip(1)
-                .findFirst();
-        System.out.println(secondLargest.get());
+                .findFirst()
+                .ifPresent(System.out::println);
 
         System.out.print("5. Third smallest: ");
-        Optional<Integer> thirdSmallest = list.stream()
+        list.stream()
                 .distinct()
-                .sorted(Integer::compareTo)
+                .sorted()
                 .skip(2)
-                .findFirst();
-        System.out.println(thirdSmallest.get());
+                .findFirst()
+                .ifPresent(System.out::println);
 
         System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
@@ -57,7 +58,7 @@ public class StreamPractice {
         System.out.print("9. Even numbers in ascending order: ");
         List<Integer> ascSortedEvenNumList = list.stream()
                 .filter(n -> n % 2 == 0)
-                .sorted(Integer::compareTo)
+                .sorted()
                 .toList();
         System.out.println(ascSortedEvenNumList);
 
@@ -72,13 +73,13 @@ public class StreamPractice {
 
         System.out.print("14. Find longest string by length: ");
         words.stream()
-                        .max((s1, s2) -> s1.length() - s2.length())
-                                .ifPresent(System.out::println);
+            .max((str1, str2) -> str1.length() - str2.length())
+            .ifPresent(System.out::println);
 
         System.out.print("15. Find longest string lexicographically: ");
         words.stream()
-                .max(String::compareTo)
-                .ifPresent(System.out::println);
+            .max(String::compareTo)
+            .ifPresent(System.out::println);
 
         System.out.println("16. Group Elements by Even and Odd");
         Map<Boolean, List<Integer>> groupedByEvenOdd = list.stream()
@@ -110,7 +111,6 @@ public class StreamPractice {
         System.out.print("20. Find the First Non-Repeating Character in a String: ");
         input.chars()
                 .mapToObj(c -> (char) c)
-                .map(String::valueOf)
                 .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
                 .filter(kv -> kv.getValue() == 1)
@@ -144,9 +144,10 @@ public class StreamPractice {
         List<Integer> ls = Arrays.asList(1,3,2,5,8,8,2,2,5,4,7);
 
         System.out.print("24. Find duplicates: ");
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> hs = new HashSet<>();
+
         Set<Integer> duplicates = ls.stream()
-                .filter(n -> !set.add(n))
+                .filter(n -> !hs.add(n))
                 .collect(Collectors.toSet());
         System.out.println(duplicates); // [8, 2, 5]
 
@@ -155,7 +156,7 @@ public class StreamPractice {
         System.out.print("25. Remove: null, empty string \"\", blank strings like \" \" or \"     \": ");
         List<Object> result = objectList.stream()
                 .filter(Objects::nonNull)
-                .filter(item -> !(item instanceof String) || !((String) item).isBlank())
+                .filter(obj -> !(obj instanceof String) || !(((String) obj).isBlank()))
                 .toList();
         System.out.println(result);
 
@@ -163,29 +164,26 @@ public class StreamPractice {
         System.out.print("26. Valid emails: ");
         List<String> result2 = emails.stream()
                 .filter(Objects::nonNull)
-                .filter(item -> (item instanceof String) && !(((String) item).isBlank()))
+                .filter(obj -> (obj instanceof String) && !(((String) obj).isBlank()))
                 .map(String::valueOf)
-                .filter(str -> str.contains("@gmail.com") || str.contains("@yahoo.com"))
+                .filter(str -> str.contains("@yahoo.com") || str.contains("@gmail.com"))
                 .toList();
         System.out.println(result2);
 
         System.out.print("27. Count frequency & sort by frequency of character in a string and also maintain the insertion order: ");
         // Sort the map based on frequency (value) using sorted() and then collect into a LinkedHashMap to maintain insertion order.
         // String str1 = "hello how are you doing";
-
-        LinkedHashMap<String, Long> sortedMap = str1.chars()
+        LinkedHashMap<Character, Long> sortedMap = str1.chars()
                 .mapToObj(c -> (char) c)
-                .map(String::valueOf)
-                .collect(Collectors.groupingBy(s -> s, Collectors.counting()))
+                .collect(Collectors.groupingBy(c -> c, Collectors.counting()))
                 .entrySet().stream()
-//                .sorted(Map.Entry.comparingByValue())   // ascending order
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed()) // descending order
+                .sorted(Map.Entry.<Character, Long>comparingByValue().reversed())
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new
-                ));
-
+                                Map.Entry::getKey,
+                                Map.Entry::getValue,
+                                (oldVal, newVal) -> oldVal, LinkedHashMap::new
+                        )
+                );
         System.out.println(sortedMap);
     }
 }

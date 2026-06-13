@@ -115,14 +115,19 @@ public class AggregatorService {
                 CompletableFuture.supplyAsync(() ->
                         getPayment(), executorService);
 
-        // wait for all futures
-        CompletableFuture.allOf(
-                userFuture,
-                orderFuture,
-                paymentFuture
-        ).join();
+        // The purpose of allOf() is not to collect results, but simply to wait until all supplied futures complete.
+        CompletableFuture<Void> responseFuture =
+                CompletableFuture.allOf(
+                        userFuture,
+                        orderFuture,
+                        paymentFuture
+                );
+
+        // responseFuture.join() returns null because responseFuture is of type: CompletableFuture<Void>
+        responseFuture.join();  // blocks until all 3 futures complete
 
         // combine result
+        // Get individual results
         return new CombinedResponse(
                 userFuture.join(),
                 orderFuture.join(),
