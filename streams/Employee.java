@@ -66,10 +66,11 @@ public class Employee {
         Map<String, List<Double>> empWithMoreThanAvgSalaryFromEachDept = employeeList.stream()
                 .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
                         Collectors.toList(),
-
                         empList -> {
-                            double avgSalary = empList.stream().mapToDouble(Employee::getSalary).average().getAsDouble();
-                            return empList.stream().filter(em -> em.getSalary() > avgSalary).map(Employee::getSalary).toList();
+                            double avgSalary = empList.stream().map(Employee::getSalary).mapToDouble(n -> n).average().getAsDouble();
+                            List<Double> list = empList.stream().map(Employee::getSalary).filter(salary -> salary > avgSalary).toList();
+
+                            return list;
                         }
                 )));
         System.out.println(empWithMoreThanAvgSalaryFromEachDept);
