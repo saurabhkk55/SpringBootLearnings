@@ -57,7 +57,7 @@ class LRU {
     private Node head;
 
     LRU(int threshold) {
-        if(threshold == 0) throw new IllegalArgumentException("threshold can't be set to 0");
+        if(threshold == 0) throw new IllegalArgumentException("Invalid threshold value: 0");
 
         this.threshold = threshold;
     }
