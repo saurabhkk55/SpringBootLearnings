@@ -1,5 +1,7 @@
 package streams.PriorityStream;
 
+import java.util.Collections;
+
 public class Priority implements Comparable<Priority> {
     String task;
     int priority;
@@ -27,6 +29,7 @@ public class Priority implements Comparable<Priority> {
 
     @Override
     public int compareTo(Priority o) {
+        Integer.compare(o.getPriority(), this.getPriority());
         // return Integer.valueOf(this.getPriority()).compareTo(Integer.valueOf(o.getPriority()));
         if(this.getPriority() > o.getPriority()) return 1;
         else if (this.getPriority() == o.getPriority()) return this.getTask().compareTo(o.getTask());

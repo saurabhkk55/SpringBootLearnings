@@ -105,6 +105,14 @@ public class UserSpecification {
             // criteriaBuilder.and() expects an array of Predicate objects, not a List.
             return criteriaBuilder.and(predicates.toArray(new Predicate[0])); // AND Operator (we can OR as well)
         };
+
+//        // The old, painful way before Java 8
+//        return new Specification<User>() {
+//            @Override
+//            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//                // your code here...
+//            }
+//        };
     }
 }
 ```
