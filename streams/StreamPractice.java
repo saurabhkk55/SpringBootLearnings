@@ -3,6 +3,7 @@ package streams;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamPractice {
     static void main() {
@@ -38,33 +39,33 @@ public class StreamPractice {
         System.out.print("5. Third smallest: ");
         list.stream()
                 .distinct()
-                .sorted()
+                .sorted(Integer::compareTo)
                 .skip(2)
                 .findFirst()
                 .ifPresent(System.out::println);
 
         System.out.print("6. Count of even numbers: ");
         long evenNumCount = list.stream()
-                .filter(x -> x % 2 == 0)
+                .filter(num -> num % 2 == 0)
                 .count();
         System.out.println(evenNumCount);
 
         System.out.print("8. Even numbers saving/storing in a variable: ");
         List<Integer> evenNumList = list.stream()
-                .filter(x -> x % 2 == 0)
+                .filter(num -> num % 2 == 0)
                 .toList();
         System.out.println(evenNumList);
 
         System.out.print("9. Even numbers in ascending order: ");
         List<Integer> ascSortedEvenNumList = list.stream()
-                .filter(x -> x % 2 == 0)
-                .sorted()
+                .filter(num -> num % 2 == 0)
+                .sorted(Integer::compareTo)
                 .toList();
         System.out.println(ascSortedEvenNumList);
 
         System.out.print("10. Even numbers in descending order: ");
         List<Integer> descSortedEvenNumList = list.stream()
-                .filter(x -> x % 2 == 0)
+                .filter(num -> num % 2 == 0)
                 .sorted(Collections.reverseOrder())
                 .toList();
         System.out.println(descSortedEvenNumList);
@@ -73,7 +74,7 @@ public class StreamPractice {
 
         System.out.print("14. Find longest string by length: ");
         words.stream()
-            .max((str1, str2) -> str1.length() - str2.length())
+            .max((s1, s2) -> s1.length() - s2.length())
             .ifPresent(System.out::println);
 
         System.out.print("15. Find longest string lexicographically: ");
@@ -83,19 +84,21 @@ public class StreamPractice {
 
         System.out.println("16. Group Elements by Even and Odd");
         Map<Boolean, List<Integer>> groupedByEvenOdd = list.stream()
-                .collect(Collectors.partitioningBy(x -> x % 2 == 0));
+                .collect(Collectors.partitioningBy(n -> n % 2 == 0));
         System.out.println("\tEven numbers: " + groupedByEvenOdd.get(true));
         System.out.println("\tOdd numbers: " + groupedByEvenOdd.get(false));
 
         System.out.print("17. Concatenate Strings with a Delimiter: ");
         String concatenatedString = words.stream()
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(" - "));
         System.out.println(concatenatedString);
 
         String input = "hello world";
 
         System.out.print("18. Count Distinct Characters in a String: ");
-        long distinctCharacterCount = input.chars().distinct().count();
+        long distinctCharacterCount = input.chars()
+                .distinct()
+                .count();
         System.out.println(distinctCharacterCount);
 
         System.out.print("19. Remove duplicates: ");
@@ -109,10 +112,9 @@ public class StreamPractice {
         System.out.print("20. Find the First Non-Repeating Character in a String: ");
         input.chars()
                 .mapToObj(c -> (char) c)
-                .map(String::valueOf)
-                .collect(Collectors.groupingBy(s -> s, LinkedHashMap::new, Collectors.counting()))
+                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(kv -> kv.getValue() == 1)
+                .filter(entry -> entry.getValue() == 1)
                 .findFirst()
                 .map(Map.Entry::getKey)
                 .ifPresent(System.out::println);
@@ -121,31 +123,32 @@ public class StreamPractice {
 
         System.out.print("21. Create a Map of Word Frequencies: ");
         Map<String, Long> wordFreq = fruits.stream()
-                .collect(Collectors.groupingBy(f -> f, Collectors.counting()));
+                .collect(Collectors.groupingBy(fruit -> fruit, Collectors.counting()));
         System.out.println(wordFreq);
 
         String str1 = "hello how are you doing";
 
         System.out.print("22. Count frequency of character in a string and also maintain the insertion order: ");
         LinkedHashMap<Character, Long> characterFreq = str1.chars()
-                .mapToObj(c -> (char) c)
-                .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()));
+                .mapToObj(ch -> (char) ch)
+                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()));
         System.out.println(characterFreq);
 
         List<String> input1 = List.of("abc", "aabb", "defg", "xyzx", "mnop");
 
         System.out.print("23. Given a list of strings, find all the string that contains all unique characters: ");
         List<String> list1 = input1.stream()
-                .filter(s -> s.length() == s.chars().distinct().count())
+                .filter(str -> str.length() == str.chars().distinct().count())
                 .toList();
         System.out.println(list1);
 
         List<Integer> ls = Arrays.asList(1,3,2,5,8,8,2,2,5,4,7);
 
         System.out.print("24. Find duplicates: ");
-        Set<Integer> s = new HashSet<>();
+        Set<Integer> hs = new HashSet<>();
+
         Set<Integer> duplicates = ls.stream()
-                .filter(n -> !s.add(n))
+                .filter(num -> !hs.add(num))
                 .collect(Collectors.toSet());
         System.out.println(duplicates); // [8, 2, 5]
 
@@ -164,22 +167,24 @@ public class StreamPractice {
                 .filter(Objects::nonNull)
                 .filter(obj -> (obj instanceof String) && !(((String) obj).isBlank()))
                 .map(String::valueOf)
-                .filter(emialStr -> emialStr.contains("@gmail.com") || emialStr.contains("@yahoo.com"))
+                .filter(str -> str.contains("@gmail.com") || str.contains("@yahoo.com"))
                 .toList();
         System.out.println(result2);
 
         System.out.print("27. Count frequency & sort by frequency of character in a string and also maintain the insertion order: ");
         // Sort the map based on frequency (value) using sorted() and then collect into a LinkedHashMap to maintain insertion order.
         // String str1 = "hello how are you doing";
-        LinkedHashMap<Character, Long> sortedMap = str1.chars()
-                .mapToObj(c -> (char) c)
-                .collect(Collectors.groupingBy(c -> c, Collectors.counting()))
+        Map<String, Long> sortedMap = str1.chars()
+                .mapToObj(ch -> (char) ch)
+                .map(String::valueOf)
+                .collect(Collectors.groupingBy(str -> str, Collectors.counting()))
                 .entrySet().stream()
-                .sorted(Map.Entry.<Character, Long>comparingByValue().reversed())
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
-                        (oldVaal, newVaal) -> oldVaal, LinkedHashMap::new
+                        (oldV, newV) -> oldV,
+                        LinkedHashMap::new
                 ));
         System.out.println(sortedMap);
     }

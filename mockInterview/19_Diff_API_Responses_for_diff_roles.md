@@ -160,6 +160,47 @@ public ResponseEntity<?> getUser(@PathVariable Long id) {
 }
 ```
 
+OR
+
+```java
+boolean isAdmin = authentication.getAuthorities()
+        .stream()
+        .anyMatch(auth -> "ROLE_ADMIN".equals(auth.getAuthority()));
+
+boolean isSupport = authentication.getAuthorities()
+        .stream()
+        .anyMatch(auth -> "ROLE_SUPPORT".equals(auth.getAuthority()));
+
+if (isAdmin) {
+    return ResponseEntity.ok(
+            new AdminUserResponse(
+                    user.getId(),
+                    user.getName(),
+                    user.getEmail(),
+                    user.getSalary(),
+                    user.getSsn()
+            )
+    );
+}
+
+if (isSupport) {
+    return ResponseEntity.ok(
+            new SupportResponse(
+                    user.getId(),
+                    user.getName(),
+                    user.getEmail()
+            )
+    );
+}
+
+return ResponseEntity.ok(
+        new UserResponse(
+                user.getId(),
+                user.getName()
+        )
+);
+```
+
 ---
 
 # Why This Approach is Best

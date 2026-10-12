@@ -9,14 +9,13 @@ public class moreThan2VowelsInString {
         // Find all the Strings that contain more than 2 vowels
         String[] names = {"ritu", "saurabh", "ram", "prerna", "vivek", "lucifer"};
 
-        List<String> validNames = Arrays.stream(names)
+        List<String> list = Arrays.stream(names)
                 .filter(name -> {
+                    String vowels = "aeiouAEIOU";
 
-                    String vowels = "aeiou";
-
-                    String[] split = name.split("");
-
-                    long count = Arrays.stream(split)
+                    long count = name.chars()
+                            .mapToObj(ch -> (char) ch)
+                            .map(String::valueOf)
                             .filter(str -> vowels.contains(str))
                             .count();
 
@@ -24,6 +23,6 @@ public class moreThan2VowelsInString {
                 })
                 .toList();
 
-        System.out.println(validNames);
+        System.out.println(list);
     }
 }

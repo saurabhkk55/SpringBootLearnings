@@ -47,32 +47,40 @@ public class Employee {
         List<Employee> employeeList = List.of(e1, e2, e3, e4, e5, e6, e7, e8, e9);
 
         // Find employee from each dept with highest salary
-        Map<String, Optional<Double>> empWIthMaxSalaryFromEachDept = employeeList.stream()
+        Map<String, Optional<String>> collect = employeeList.stream()
                 .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
                         Collectors.toList(),
-                        empList -> empList.stream().map(Employee::getSalary).max(Double::compareTo)
+                        empList -> empList.stream()
+                                .max((em1, em2) -> (int) (em1.getSalary() - em2.getSalary()))
+                                .map(employee -> employee.getName() + " " + employee.getSalary())
                 )));
-        System.out.println(empWIthMaxSalaryFromEachDept);
+        System.out.println(collect);
 
         // employee with second highest Salary From Each Dept
-        Map<String, Optional<Double>> empWith2ndHighestSalaryFromEachDept = employeeList.stream()
+        Map<String, Optional<String>> collect1 = employeeList.stream()
                 .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
                         Collectors.toList(),
-                        empList -> empList.stream().map(Employee::getSalary).sorted(Collections.reverseOrder()).skip(1).findFirst()
+                        empList -> empList.stream()
+                                .sorted((em1, em2) -> (int) (em2.getSalary() - em1.getSalary()))
+                                .skip(1)
+                                .findFirst()
+                                .map(employee -> employee.getName() + " " + employee.getSalary())
                 )));
-        System.out.println(empWith2ndHighestSalaryFromEachDept);
+        System.out.println(collect1);
 
         // employees from each department with more than average salary
-        Map<String, List<Double>> empWithMoreThanAvgSalaryFromEachDept = employeeList.stream()
+        Map<String, List<String>> collect2 = employeeList.stream()
                 .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
                         Collectors.toList(),
                         empList -> {
-                            double avgSalary = empList.stream().map(Employee::getSalary).mapToDouble(n -> n).average().getAsDouble();
-                            List<Double> list = empList.stream().map(Employee::getSalary).filter(salary -> salary > avgSalary).toList();
-
+                            double avgSalary = empList.stream().map(Employee::getSalary).mapToDouble(num -> num).average().getAsDouble();
+                            List<String> list = empList.stream()
+                                    .filter(employee -> employee.getSalary() > avgSalary)
+                                    .map(employee -> employee.getName() + " " + employee.getSalary())
+                                    .toList();
                             return list;
                         }
                 )));
-        System.out.println(empWithMoreThanAvgSalaryFromEachDept);
+        System.out.println(collect2);
     }
 }
